@@ -1,0 +1,11 @@
+$colors: (
+    'primary': (
+        'color': #3ca,
+        'inverse': #fff,
+        'transparent': rgba(#3ca, 0.5)
+    )
+);
+
+@function color($name, $variant: 'color') {
+    @return map-get(map-get($colors, $name), $variant)
+};

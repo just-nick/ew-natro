@@ -1,0 +1,14 @@
+$default-font: Arial, Helvetica, sans-serif;
+
+$font-sizes: (
+    'default': (
+        'mobile': 1
+    ),
+    'hero': (
+        'mobile': 2.5
+    )
+);
+
+@function font-size($name, $device: 'mobile') {
+    @return map-get(map-get($font-sizes, $name), $device) * 1rem;
+};

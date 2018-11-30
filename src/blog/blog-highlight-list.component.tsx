@@ -1,0 +1,15 @@
+import { Blog } from "./blog";
+import { BlogHighlightComponent } from "./blog-highlight.component";
+import React from "react";
+
+type Props = {
+    blogs: Blog[]
+}
+
+export const BlogHighlightListComponent: React.StatelessComponent<Props> = (props) => {
+    return (
+        <div>
+            {props.blogs.map((blog, i) => <BlogHighlightComponent key={i} blog={blog} />)}
+        </div>
+    );
+}

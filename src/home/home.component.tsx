@@ -7,23 +7,42 @@ import { BlogHighlightListComponent } from "../blog/blog-highlight-list.componen
 import { Hero } from "../hero/hero";
 import { connect, DispatchProp } from "react-redux";
 import { reDo } from "redux-re-do";
+import { getApi } from "prismic-javascript";
 
 class HomeComponentBase extends React.Component<{} & DispatchProp, {}> {
-    public render() {
-        const highlights: Highlight[] = [{
-            label: 'Highlight 1',
-            href: '/',
-            icon: ''
-        }, {
-            label: 'Highlight 2',
-            href: '/',
-            icon: ''
-        }, {
-            label: 'Highlight 3',
-            href: '/',
-            icon: ''
-        }];
+    public state = {
+        highlights: [] as Highlight[],
+        heros: [] as Hero[],
+        loading: true
+    };
 
+    public componentDidMount() {
+        getApi("https://emmawisemannaturopathy.prismic.io/api/v2").then((api) => {
+            api.getSingle('home').then((response) => {
+                console.log(response);
+
+                const heros: Hero[] = response.data.hero_banner.map((heroItem: any) => ({
+                    title: heroItem.title[0].text,
+                    image: heroItem.image.url,
+                    summary: heroItem.content[0].text,
+                    cta: {
+                        label: 'Learn More',
+                        url: ''
+                    }
+                }));
+
+                this.setState({
+                    heros,
+                    loading: false
+                })
+
+            }, (e) => {
+                console.log(e);
+            });
+        });
+    }
+
+    public render() {
         const blogs: Blog[] = [{
             title: 'Blog 1',
             id: '1-asdfgh',
@@ -31,40 +50,16 @@ class HomeComponentBase extends React.Component<{} & DispatchProp, {}> {
             body: ''
         }];
 
-        const heros: Hero[] = [{
-            title: 'Something special here',
-            image: '',
-            summary: 'Lorem ipsum dolar et cosecutor',
-            cta: {
-                label: 'Learn More',
-                url: ''
-            }
-        }, {
-            title: 'Hero Number Two',
-            image: '',
-            summary: 'Description text to explain',
-            cta: {
-                label: 'Learn More',
-                url: ''
-            }
-        }, {
-            title: 'This is-a hero',
-            image: '',
-            summary: 'Something else goes here',
-            cta: {
-                label: 'Learn More',
-                url: ''
-            }
-        }];
-
         return (
             <div>
+                <span>Loading: {this.state.loading.valueOf()}</span>
+
                 <button onClick={this.click}>Click me</button>
                 <h1>Home</h1>
-                <HeroComponent heros={heros} />
+                <HeroComponent heros={this.state.heros} />
 
                 <h2>Highlights</h2>
-                <HighlightsComponent highlights={highlights} />
+                <HighlightsComponent highlights={this.state.highlights} />
 
                 <h2>The latest from Emma's blog</h2>
                 <BlogHighlightListComponent blogs={blogs} />

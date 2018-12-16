@@ -13,9 +13,9 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
         position
     } = props;
 
-    const title = hero.title.split(' ');
+    const title = hero.title[0].text.split(' ');
     const style: CSSProperties = {
-        backgroundImage: `url(${hero.image})`
+        backgroundImage: `url(${hero.image.url})`
     };
 
     return (
@@ -23,14 +23,14 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
             <div className='container'>
                 <div className='content'>
                     <h2>
-                        {title.map((part) => (
-                            <span>{part}</span>
+                        {title.map((part, i) => (
+                            <span key={i}>{part}</span>
                         ))}
                     </h2>
                     <p>
-                        {hero.summary}
+                        {hero.content[0].text}
                     </p>
-                    <Link to={hero.cta.url}>{hero.cta.label}</Link>
+                    <Link to={'hero.cta'}>Find out more...</Link>
                 </div>
             </div>
         </section>

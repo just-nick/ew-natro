@@ -1,6 +1,8 @@
+@import './spacing';
 @import './colour';
 
-$default-font: Arial, Helvetica, sans-serif;
+$default-font: 'Arial', 'Helvetica', sans-serif;
+$feature-font: 'Moon', 'Arial', 'Helvetica', sans-serif;
 
 $font-sizes: (
     'default': (
@@ -18,8 +20,23 @@ $font-sizes: (
     @return map-get(map-get($font-sizes, $name), $device) * 1rem;
 };
 
+%h1 {
+    margin: space('section-break') 0 space('heading-break');
+    font-family: $feature-font;
+    text-transform: uppercase;
+    font-size: font-size('hero');
+    font-weight: normal;
+
+    span {
+        padding: 0 3px;
+        border: 1px solid;
+        margin-bottom: -1px;
+        margin-right: -1px;
+    }
+}
+
 %h2 {
-    margin: 3rem 0 1rem;
+    margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h2');
     color: color('content');
     border-bottom: 1px solid;

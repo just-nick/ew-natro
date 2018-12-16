@@ -3,6 +3,11 @@
 @import '../style/colour';
 @import '../style/breakpoint';
 
+@font-face {
+    font-family: 'Moon';
+    src: url('../assets/moon-bold.woff');
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -48,6 +53,7 @@ header {
 
         a {
             font-weight: bold;
+            font-family: $feature-font;
             text-transform: uppercase;
             color: color('content');
             text-decoration: none;

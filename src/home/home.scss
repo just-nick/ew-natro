@@ -1,5 +1,77 @@
+@import '../style/colour';
+@import '../style/spacing';
+@import '../style/typography';
 
+.services {
+    ul {
+        display: flex;
+        list-style: none;
+    }
+
+    li {
+        background: color('primary');
+        text-align: center;
+        flex: 1 0 auto;
+        margin-left: 3px;
+
+        &:first-child {
+            margin: 0;
+        }
+    }
+
+    img {
+        padding: 1rem;
+        max-height: 8rem;
+        display: block;
+        margin: auto;
+    }
+
+    h3 {
+        background: color('secondary');
+        color: color('secondary', 'inverse');
+        padding: 1rem 0;
+    }
+}
 
 .quote {
-    background: color('')
+    margin: space('section-break') 0 0;
+    background: color('secondary');
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-weight: bold;
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    img {
+        flex: 0 0 auto;
+        display: block;
+        background: color('content');
+        border: 2px solid color('content', 'inverse');
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        margin-right: 2rem;
+    }
+
+    .content {
+        flex: 1 1 auto;
+    }
+
+    p {
+        font-size: 1.6rem;
+        margin-bottom: space('heading-break');
+
+        &::before {
+            content: '\201c';
+        }
+
+        &::after {
+            content: '\201d';
+        }
+    }
+
+
 }

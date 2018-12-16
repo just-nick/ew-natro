@@ -1,15 +1,42 @@
-@import url('../style/colour.scss');
+@import '../style/colour';
+@import '../style/typography';
+@import '../style/breakpoint';
+
+$blog-higlight-size-desktop: 48%;
+$blog-higlight-size: 100%;
+
+.blog-highlight-list-component {
+    @include breakpoint('md') {
+        display: flex;
+
+        .blog-highlight-component {
+            flex: 0 0 $blog-higlight-size-desktop;
+            padding-bottom: $blog-higlight-size-desktop;
+        }
+    }
+}
 
 .blog-highlight-component {
+    position: relative;
     display: block;
-    height: 200px;
-    width: 200px;
+    background: color('secondary') center center;
+    background-size: contain;
+    width: $blog-higlight-size;
+    padding-bottom: $blog-higlight-size;
     background-size: cover;
     text-decoration: none;
 
     span {
+        font-family: $feature-font;
+        position: absolute;
         display: block;
-        background: hotpink;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        height: 50%;
+        background: color('primary');
         color: white;
+        padding: 1em;
+        font-size: 1.5rem;
     }
 }

@@ -19,15 +19,22 @@ export class MainComponent extends React.Component<{}, {}> {
             <BrowserRouter>
                 <Provider store={store}>
                     <React.Fragment>
-                        <nav>
-                            <Link to="/">Home</Link>
-                            <Link to="/contact">Contact</Link>
-                        </nav>
+                        <header>
+                            <div className='container'>
+                                <nav>
+                                    <Link to="/">Home</Link>
+                                    <Link to="/contact">Contact</Link>
+                                </nav>
+
+                                <div className='logo'>Emma Wiseman</div>
+                            </div>
+                        </header>
 
                         <main>
                             <Route path="/" exact component={HomeComponent} />
                             <Route path="/contact" component={HomeComponent} />
                         </main>
+
                         <FooterComponent />
                     </React.Fragment>
                 </Provider>

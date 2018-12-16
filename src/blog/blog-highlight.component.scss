@@ -1,0 +1,15 @@
+@import url('../style/colour.scss');
+
+.blog-highlight-component {
+    display: block;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    text-decoration: none;
+
+    span {
+        display: block;
+        background: hotpink;
+        color: white;
+    }
+}

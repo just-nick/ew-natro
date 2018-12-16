@@ -1,17 +1,79 @@
 @import '../style/typography';
+@import '../style/spacing';
+@import '../style/colour';
+@import '../style/breakpoint';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html,
 body {
     font-family: $default-font;
+    font-size: 16px;
     padding: 0;
     margin: 0;
+    color: color('content');
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h2 {
+    @extend %h2;
+}
 
+.container {
+    margin: auto;
+    padding: 0 space('gutter');
+    max-width: 980px;
+}
+
+header {
+    padding: 2rem 0;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include breakpoint('md') {
+
+        }
+    }
+
+    nav {
+        display: none;
+        flex: 1 1 0;
+        margin-left: - space('gutter');
+
+        a {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: color('content');
+            text-decoration: none;
+            padding: 0.5rem space('gutter');
+
+            &:hover {
+                background: color('content');
+                color: color('content', 'inverse');
+            }
+        }
+
+        @include breakpoint('md') {
+            display: block;
+        }
+    }
+
+    .logo {
+        width: 100%;
+        height: 40px;
+        background: color('primary');
+        text-indent: -9999999rem;
+        overflow: hidden;
+
+        @include breakpoint('md') {
+            flex: 0 0 250px;
+            width: 250px;
+        }
+    }
 }

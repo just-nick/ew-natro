@@ -1,0 +1,6 @@
+@import '../style/colour';
+
+.footer-component {
+    background: color('primary');
+    color: color('primary', 'inverse');
+}

@@ -1,6 +1,6 @@
-export interface Blog {
-    id: string;
-    title: string;
-    body: string;
-    featuredImage: string;
+import { TextContent, PrismicData, ImageContent } from './../common/content';
+export interface Blog extends PrismicData {
+    title: TextContent[];
+    body: TextContent[];
+    feature_image: ImageContent;
 }

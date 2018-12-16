@@ -1,18 +1,27 @@
 import React from "react";
 import { HeroComponent } from "../hero/hero.component";
-import { HighlightsComponent } from "../highlights/highlights.component";
 import { Highlight } from "../highlights/highlight";
 import { Blog } from "../blog/blog";
 import { BlogHighlightListComponent } from "../blog/blog-highlight-list.component";
 import { Hero } from "../hero/hero";
 import { connect, DispatchProp } from "react-redux";
 import { reDo } from "redux-re-do";
-import { getApi } from "prismic-javascript";
+import { getApi, Predicates } from "prismic-javascript";
 
-class HomeComponentBase extends React.Component<{} & DispatchProp, {}> {
+import './home.scss';
+
+type State = {
+    highlights: Highlight[],
+    heros: Hero[],
+    blogs: Blog[],
+    loading: boolean
+};
+
+class HomeComponentBase extends React.Component<{} & DispatchProp, State> {
     public state = {
-        highlights: [] as Highlight[],
-        heros: [] as Hero[],
+        highlights: [],
+        heros: [],
+        blogs: [],
         loading: true
     };
 
@@ -32,6 +41,7 @@ class HomeComponentBase extends React.Component<{} & DispatchProp, {}> {
                 }));
 
                 this.setState({
+                    ...this.state,
                     heros,
                     loading: false
                 })
@@ -39,32 +49,48 @@ class HomeComponentBase extends React.Component<{} & DispatchProp, {}> {
             }, (e) => {
                 console.log(e);
             });
+
+            api.query(
+                Predicates.at('document.type', 'blog_post'), {}
+            ).then((r) => this.setState({
+                ...this.state,
+                blogs: r.results.map((result) => ({...result, ...result.data}))
+            }));
         });
     }
 
     public render() {
-        const blogs: Blog[] = [{
-            title: 'Blog 1',
-            id: '1-asdfgh',
-            featuredImage: '',
-            body: ''
-        }];
-
+        console.log('Render', this.state.blogs);
         return (
-            <div>
-                <span>Loading: {this.state.loading.valueOf()}</span>
-
-                <button onClick={this.click}>Click me</button>
-                <h1>Home</h1>
+            <>
                 <HeroComponent heros={this.state.heros} />
 
-                <h2>Highlights</h2>
-                <HighlightsComponent highlights={this.state.highlights} />
+                <section className='container'>
+                    <h2>How can Emma help you?</h2>
+                    <p>xyz</p>
+                </section>
 
-                <h2>The latest from Emma's blog</h2>
-                <BlogHighlightListComponent blogs={blogs} />
+                <section className='quote'>
+                    <div className='container'>
+                        <img src="" alt="" />
+                        <p>Place holder text to be updated via CMS place holder text to be updated via CMS</p>
+                        <footer>Emma Wiseman, Clinical Naturopath</footer>
+                    </div>
+                </section>
 
-            </div>
+                <section className='container'>
+                    <h2>The latest from Emma's blog</h2>
+                    <BlogHighlightListComponent blogs={this.state.blogs} />
+                </section>
+
+                <form className='container'>
+                    <h2>Subscribe for the latest news &amp; events</h2>
+                </form>
+
+                <section className='container'>
+                    <h2>Follow Emma on Instagram</h2>
+                </section>
+            </>
         )
     }
 

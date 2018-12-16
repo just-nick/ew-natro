@@ -1,8 +1,18 @@
 $colors: (
     'primary': (
-        'color': #3ca,
+        'color': #aedcd3,
         'inverse': #fff,
-        'transparent': rgba(#3ca, 0.5)
+        'shadow': #a6cac2,
+        'dark': #64817e,
+        'transparent': rgba(#aedcd3, 0.95)
+    ),
+    'secondary': (
+        'color': #e7e8e9,
+        'inverse': #9d9fa2
+    ),
+    'content': (
+        'color': #9d9fa2,
+        'inverse': #fff
     )
 );
 

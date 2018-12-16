@@ -7,6 +7,7 @@ type Props = {
 }
 
 export const BlogHighlightListComponent: React.StatelessComponent<Props> = (props) => {
+    console.log('List', props);
     return (
         <div>
             {props.blogs.map((blog, i) => <BlogHighlightComponent key={i} blog={blog} />)}

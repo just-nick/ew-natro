@@ -1,3 +1,5 @@
+@import './colour';
+
 $default-font: Arial, Helvetica, sans-serif;
 
 $font-sizes: (
@@ -6,9 +8,19 @@ $font-sizes: (
     ),
     'hero': (
         'mobile': 2.5
+    ),
+    'h2': (
+        'mobile': 1.2
     )
 );
 
 @function font-size($name, $device: 'mobile') {
     @return map-get(map-get($font-sizes, $name), $device) * 1rem;
 };
+
+%h2 {
+    margin: 3rem 0 1rem;
+    font-size: font-size('h2');
+    color: color('content');
+    border-bottom: 1px solid;
+}

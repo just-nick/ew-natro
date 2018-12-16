@@ -1,0 +1,12 @@
+$spaces: (
+    'gutter': (
+        'mobile': 1rem
+    ),
+    'section-break': (
+        'mobile': 3rem
+    )
+);
+
+@function space($name, $variant: 'mobile') {
+    @return map-get(map-get($spaces, $name), $variant)
+};

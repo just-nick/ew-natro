@@ -5,6 +5,7 @@
 .services {
     ul {
         display: flex;
+        padding: 0;
         list-style: none;
     }
 
@@ -72,6 +73,4 @@
             content: '\201d';
         }
     }
-
-
 }

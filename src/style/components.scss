@@ -1,0 +1,16 @@
+%button {
+    color: inherit;
+    background: color('primary', 'shadow');
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: .5rem;
+    justify-self: flex-end;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+        border-color: inherit;
+        outline: none;
+    }
+}

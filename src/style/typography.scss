@@ -1,4 +1,5 @@
 @import './spacing';
+@import './breakpoint';
 @import './colour';
 
 $default-font: 'Arial', 'Helvetica', sans-serif;
@@ -13,6 +14,9 @@ $font-sizes: (
     ),
     'h2': (
         'mobile': 1.2
+    ),
+    'h3': (
+        'mobile': 1.1
     )
 );
 
@@ -26,6 +30,14 @@ $font-sizes: (
     text-transform: uppercase;
     font-size: font-size('hero');
     font-weight: normal;
+    color: color('primary', 'inverse');
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include breakpoint('sm') {
+        flex-wrap: nowrap;
+    }
 
     span {
         padding: 0 3px;
@@ -35,9 +47,29 @@ $font-sizes: (
     }
 }
 
+%hero {
+    @extend %h1;
+    font-size: 4rem;
+
+    span {
+        padding: 0 8px;
+        border-width: 3px;
+        margin-bottom: -3px;
+        margin-right: -3px;
+    }
+}
+
 %h2 {
     margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h2');
     color: color('content');
     border-bottom: 1px solid;
+}
+
+%h3 {
+    text-transform: uppercase;
+    margin: space('section-break') 0 space('heading-break');
+    font-size: font-size('h3');
+    color: inherit;
+    border-bottom: none;
 }

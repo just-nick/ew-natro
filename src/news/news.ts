@@ -1,8 +1,9 @@
 import { TextContent, ImageContent } from './../common/content';
 import { PrismicData } from "../common/content";
 
-export interface Service extends PrismicData {
+export interface News extends PrismicData {
     title: string,
-    description: TextContent[];
-    image: ImageContent;
+    summary: string;
+    content: TextContent[];
+    feature_image: ImageContent;
 }

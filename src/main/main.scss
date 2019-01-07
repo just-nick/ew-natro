@@ -2,6 +2,7 @@
 @import '../style/spacing';
 @import '../style/colour';
 @import '../style/breakpoint';
+@import '../style/components';
 
 @font-face {
     font-family: 'Moon';
@@ -23,8 +24,16 @@ body {
     color: color('content');
 }
 
+ul {
+    padding-left: 1.5rem;
+}
+
 h2 {
     @extend %h2;
+}
+
+p {
+    margin: space('content-break') 0;
 }
 
 .container {
@@ -81,5 +90,101 @@ header {
             flex: 0 0 250px;
             width: 250px;
         }
+    }
+}
+
+.image-block {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+
+    span {
+        flex: 1 1 0;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+.page-hero {
+    position: relative;
+    display: flex;
+    min-height: 20rem;
+    background: color('primary');
+    color: color('primary', 'inverse');
+    align-items: center;
+    justify-content: center;
+
+    &::before,
+    .custom {
+        content: '';
+        position: absolute;
+        display: block;
+        background: color('content') no-repeat center;
+        background-size: cover;
+        top: 0;
+        left: 0;
+        right: 50%;
+        bottom: 0;
+    }
+
+    &.custom {
+        &::before {
+            content: none;
+        }
+    }
+
+    h1 {
+        @extend %hero;
+        position: relative;
+        margin: 0 0 0 8rem;
+    }
+}
+
+.block-item {
+    $block-gutter: 2rem;
+    display: flex;
+    margin: space('section-break') 0;
+    background: color('secondary');
+    color: color('content', 'dark');
+
+    .feature {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: color('primary') no-repeat center;
+        background-size: cover;
+        color: color('primary', 'inverse');
+        flex: 0 0 14rem;
+        min-height: 14rem;
+        padding: $block-gutter;
+        text-align: center;
+
+        img {
+            max-width: 80%;
+        }
+
+        button {
+            @extend %button;
+        }
+    }
+
+    .content {
+        padding: $block-gutter;
+        flex: 1 1 auto;
+
+        a {
+            @extend %button;
+            display: inline-block;
+            background: none;
+            margin-top: space('section-break');
+        }
+    }
+
+    h2 {
+        @extend %h3;
+        margin-top: 0;
     }
 }

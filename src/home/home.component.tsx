@@ -1,114 +1,65 @@
 import React from "react";
 import { HeroComponent } from "../hero/hero.component";
-import { Blog } from "../blog/blog";
 import { BlogHighlightListComponent } from "../blog/blog-highlight-list.component";
-import { connect, DispatchProp } from "react-redux";
-import { reDo } from "redux-re-do";
-import { getApi, Predicates } from "prismic-javascript";
+import { connect, DispatchProp, MapStateToProps } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
+import { Link } from "react-router-dom";
+import { DataState } from "../service/service.reducer";
 
 import './home.scss';
-import { Home } from "./home";
-import { Service } from "../service/service";
-import { Link } from "react-router-dom";
 
-type State = {
-    home?: Home,
-    blogs?: Blog[],
-    services?: Service[]
-};
+const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (props) => {
+    if (props.home && props.blogs && props.services) {
+        return (
+            <>
+                <HeroComponent heros={props.home.hero_banner} />
 
-class HomeComponentBase extends React.Component<DispatchProp, State> {
-    public state: State = {};
+                <section className='services container'>
+                    <h2>How can Emma help you?</h2>
+                    <ul>
+                        {props.services.map((service, i) => (
+                            <li key={i}>
+                                <Link to={`/services#${service.id}`}>
+                                    <img src={service.image.url} alt='' />
+                                    <h3>{service.title}</h3>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
 
-    public render() {
-        if (this.state.home && this.state.blogs && this.state.services) {
-            return (
-                <>
-                    <HeroComponent heros={this.state.home.hero_banner} />
-
-                    <section className='services container'>
-                        <h2>How can Emma help you?</h2>
-                        <ul>
-                            {this.state.services.map((service) => (
-                                <li>
-                                    <Link to=''>
-                                        <img src={service.image.url} alt='' />
-                                        <h3>{service.title}</h3>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
-
-                    <section className='quote'>
-                        <div className='container'>
-                            <img src={this.state.home.quote_photo.url} alt='' />
-                            <div className='content'>
-                                <p>{this.state.home.quote[0].text}</p>
-                                <footer>{this.state.home.by_line[0].text}</footer>
-                            </div>
+                <section className='quote'>
+                    <div className='container'>
+                        <img src={props.home.quote_photo.url} alt='' />
+                        <div className='content'>
+                            <p>{props.home.quote[0].text}</p>
+                            <footer>{props.home.by_line[0].text}</footer>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    <section className='container'>
-                        <h2>The latest from Emma's blog</h2>
-                        <BlogHighlightListComponent blogs={this.state.blogs} />
-                    </section>
+                <section className='container'>
+                    <h2>The latest from Emma's blog</h2>
+                    <BlogHighlightListComponent blogs={props.blogs} />
+                </section>
 
-                    <form className='container'>
-                        <h2>Subscribe for the latest news &amp; events</h2>
-                    </form>
+                <form className='container'>
+                    <h2>Subscribe for the latest news &amp; events</h2>
+                </form>
 
-                    <section className='container'>
-                        <h2>Follow Emma on Instagram</h2>
-                    </section>
-                </>
-            )
-        }
-
-        return <LoaderComponent />;
+                <section className='container'>
+                    <h2>Follow Emma on Instagram</h2>
+                </section>
+            </>
+        )
     }
 
-    public componentDidMount() {
-        getApi("https://emmawisemannaturopathy.prismic.io/api/v2").then((api) => {
-            api.getSingle('home').then((result) => {
-                this.setState({
-                    ...this.state,
-                    home: { ...result, ...result.data }
-                })
-            });
-
-            api.query(
-                Predicates.at('document.type', 'blog_post'), {}
-            ).then((r) => {
-                this.setState({
-                    ...this.state,
-                    blogs: r.results.map((result) => ({ ...result, ...result.data }))
-                });
-            });
-
-            api.query(
-                Predicates.at('document.type', 'service'), {}
-            ).then((r) => {
-                this.setState({
-                    ...this.state,
-                    services: r.results.map((result) => ({ ...result, ...result.data }))
-                });
-            });
-        });
-    }
-
-    public click = () => {
-        this.props.dispatch(
-            reDo((dispatch, _, extra) => {
-                console.log('Extra!', extra);
-                dispatch({
-                    type: 'anyAction',
-                    value: 'Anything'
-                })
-            }));
-    }
+    return <LoaderComponent />;
 }
 
-export const HomeComponent = connect(() => ({}))(HomeComponentBase);
+const mapStateToProps: MapStateToProps<DataState, {}, DataState> = (state: DataState): DataState => {
+    return {
+        ...state
+    };
+}
+export const HomeComponent = connect(mapStateToProps)(HomeComponentBase);

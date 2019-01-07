@@ -5,7 +5,8 @@ module.exports = {
     entry: "./src/index.tsx",
     output: {
         path: __dirname + '/dist',
-        filename: "[name].[chunkhash:8].js"
+        filename: "[name].[chunkhash:8].js",
+        publicPath: '/'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, DispatchProp } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
-import { DataState } from "../service/service.reducer";
+import { DataState } from "../common/reducer";
 import { Link } from "react-router-dom";
 
 const Component: React.StatelessComponent<DataState & DispatchProp> = (props) => {

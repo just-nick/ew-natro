@@ -1,5 +1,5 @@
 import React from "react";
-import { DataState } from "./service.reducer";
+import { DataState } from "../common/reducer";
 import { connect, DispatchProp } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
 import { writeText } from "../common/content";

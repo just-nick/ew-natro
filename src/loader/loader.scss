@@ -1,5 +1,41 @@
 @import '../style/colour';
 
+@keyframes loader {
+    0% {
+        top: 50px;
+        left: 50px;
+        width: 100px;
+        height: 100px;
+    }
+
+    50% {
+        top: 0px;
+        left: 0px;
+        width: 200px;
+        height: 200px;
+    }
+
+    100% {
+        top: 50px;
+        left: 50px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
 .loader-component {
-    background: color('primary');
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 100px auto;
+
+    span {
+        position: absolute;
+        top: 0;
+        border-radius: 50%;
+        background: color('primary');
+        animation: loader 2s infinite;
+        width: 100px;
+        height: 100px;
+    }
 }

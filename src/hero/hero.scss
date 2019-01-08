@@ -8,13 +8,13 @@
     overflow: hidden;
     padding-bottom: 360px;
 
-    // @include breakpoint('sm') {
-    //     padding-bottom: 420px;
-    // }
+    @include breakpoint('sm') {
+        padding-bottom: 420px;
+    }
 
-    // @include breakpoint('md') {
-    //     padding-bottom: 560px;
-    // }
+    @include breakpoint('md') {
+        padding-bottom: 560px;
+    }
 
     section {
         display: none;
@@ -39,10 +39,14 @@
         color: color('primary', 'inverse');
         height: 100%;
         width: 100%;
-        padding: 1.5rem;
+        padding: space('section-break');
 
         @include breakpoint('sm') {
             width: 300px;
+        }
+
+        @include breakpoint('md') {
+            width: 490px;
         }
     }
 
@@ -52,6 +56,8 @@
     }
 
     p {
+        margin: space('heading-break') 0;
+        line-height: 2em;
         font-weight: bold;
         color: color('primary', 'dark');
         flex: 1 1 0;

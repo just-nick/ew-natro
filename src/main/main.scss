@@ -19,9 +19,20 @@ html,
 body {
     font-family: $default-font;
     font-size: 16px;
+    line-height: 1.5;
     padding: 0;
     margin: 0;
     color: color('content');
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 0;
 }
 
 ul {
@@ -48,17 +59,42 @@ header {
     .container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        flex-direction: column;
+        overflow: hidden;
 
-        @include breakpoint('md') {
+        @include breakpoint('lg') {
+            flex-direction: row;
+        }
+    }
 
+    button {
+        height: 40px;
+        width: 40px;
+        background: hotpink;
+        border: none;
+        text-indent: -99999999px;
+
+        @include breakpoint('lg') {
+            display: none;
         }
     }
 
     nav {
-        display: none;
-        flex: 1 1 0;
+        position: relative;
+        order: 1;
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
         margin-left: - space('gutter');
+        margin-top: space('gutter');
+        overflow: hidden;
+
+        @include breakpoint('lg') {
+            margin-top: 0;
+            order: 0;
+            flex: 1 1 0;
+        }
 
         a {
             font-weight: bold;
@@ -68,27 +104,44 @@ header {
             text-decoration: none;
             padding: 0.5rem space('gutter');
 
+            &.home {
+                margin: 5px 1.8rem 0 auto;
+                text-indent: -999999px;
+                overflow: hidden;
+                background: url('../assets/home.svg') no-repeat center;
+                background-size: contain;
+                width: 26px;
+                height: 26px;
+
+                &:hover {
+                    background: url('../assets/home-filled.svg') no-repeat center transparent;
+                    background-size: contain;
+                }
+            }
+
+            &.active,
             &:hover {
                 background: color('content');
                 color: color('content', 'inverse');
             }
-        }
 
-        @include breakpoint('md') {
-            display: block;
+            &.home.active {
+                display: none;
+            }
         }
     }
 
     .logo {
-        width: 100%;
         height: 40px;
-        background: color('primary');
+        background: color('primary') url('../assets/logo.svg') no-repeat center;
+        background-size: contain;
         text-indent: -9999999rem;
         overflow: hidden;
+        flex: 0 0 40px;
+        width: 250px;
 
-        @include breakpoint('md') {
+        @include breakpoint('lg') {
             flex: 0 0 250px;
-            width: 250px;
         }
     }
 }
@@ -104,41 +157,6 @@ header {
 
     img {
         width: 100%;
-    }
-}
-
-.page-hero {
-    position: relative;
-    display: flex;
-    min-height: 20rem;
-    background: color('primary');
-    color: color('primary', 'inverse');
-    align-items: center;
-    justify-content: center;
-
-    &::before,
-    .custom {
-        content: '';
-        position: absolute;
-        display: block;
-        background: color('content') no-repeat center;
-        background-size: cover;
-        top: 0;
-        left: 0;
-        right: 50%;
-        bottom: 0;
-    }
-
-    &.custom {
-        &::before {
-            content: none;
-        }
-    }
-
-    h1 {
-        @extend %hero;
-        position: relative;
-        margin: 0 0 0 8rem;
     }
 }
 

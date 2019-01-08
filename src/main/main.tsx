@@ -1,24 +1,36 @@
 import * as React from "react";
 import { Provider } from 'react-redux';
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { BrowserRouter, NavLink, Route } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { reDoMiddleware } from 'redux-re-do';
+import { AboutComponent } from "../about/about.component";
 import { BlogListComponent } from "../blog/blog-list.component";
+import { BlogComponent } from "../blog/blog.component";
+import { DataReducer, GetData } from "../common/reducer";
 import { FooterComponent } from "../footer/footer.component";
 import { HomeComponent } from "../home/home.component";
 import { NewsListComponent } from "../news/news-list.component";
 import { NewsComponent } from "../news/news.component";
 import { ServiceListComponent } from "../service/service-list.component";
-import { GetServices, ServiceReducer } from "../service/service.reducer";
 import './main.scss';
-import { BlogComponent } from "../blog/blog.component";
 
-const store = createStore(ServiceReducer, applyMiddleware(reDoMiddleware));
+const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
-export class MainComponent extends React.Component<{}, {}> {
+export class MainComponent extends React.Component<{}, {showNav: boolean}> {
+    public state = {
+        showNav: false
+    };
+
     public componentDidMount() {
-        store.dispatch(GetServices());
+        store.dispatch(GetData());
     }
+
+    public showNav = () => {
+        this.setState({
+            showNav: !this.state.showNav
+        });
+    }
+
     public render() {
         return (
             <BrowserRouter>
@@ -27,11 +39,12 @@ export class MainComponent extends React.Component<{}, {}> {
                         <header>
                             <div className='container'>
                                 <nav>
-                                    <Link to="/">Home</Link>
-                                    <Link to="/services">Services</Link>
-                                    <Link to="/news">News</Link>
-                                    <Link to="/blog">Blog</Link>
-                                    <Link to="/contact">Contact</Link>
+                                    <NavLink to="/about">About</NavLink>
+                                    <NavLink to="/services">Services</NavLink>
+                                    <NavLink to="/news">News</NavLink>
+                                    <NavLink to="/blog">Blog</NavLink>
+                                    <NavLink to="/contact">Contact</NavLink>
+                                    <NavLink className="home" exact={true} to="/">Home</NavLink>
                                 </nav>
 
                                 <div className='logo'>Emma Wiseman</div>
@@ -40,6 +53,7 @@ export class MainComponent extends React.Component<{}, {}> {
 
                         <main>
                             <Route path="/" exact component={HomeComponent} />
+                            <Route path="/about" exact component={AboutComponent} />
                             <Route path="/services" exact component={ServiceListComponent} />
                             <Route path="/news" exact component={NewsListComponent} />
                             <Route path="/news/:id" exact component={NewsComponent} />

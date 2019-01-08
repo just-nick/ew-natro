@@ -3,7 +3,7 @@ import { connect, DispatchProp } from "react-redux";
 import { RouteComponentProps } from "react-router-dom";
 import { writeText } from "../common/content";
 import { LoaderComponent } from "../loader/loader.component";
-import { DataState } from "../service/service.reducer";
+import { DataState } from "../common/reducer";
 
 const Component: React.StatelessComponent<DataState & DispatchProp & RouteComponentProps<any>> = (props) => {
     if (props.news) {

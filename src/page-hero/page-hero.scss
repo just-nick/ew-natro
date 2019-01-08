@@ -1,0 +1,38 @@
+@import '../style/typography';
+@import '../style/colour';
+@import '../style/spacing';
+
+.page-hero {
+    position: relative;
+    display: flex;
+    min-height: 40rem;
+    background: color('primary');
+    color: color('primary', 'inverse');
+    align-items: center;
+    justify-content: center;
+
+    &::before,
+    .custom {
+        content: '';
+        position: absolute;
+        display: block;
+        background: color('content') no-repeat center;
+        background-size: cover;
+        top: 0;
+        left: 0;
+        right: 50%;
+        bottom: 0;
+    }
+
+    &.custom {
+        &::before {
+            content: none;
+        }
+    }
+
+    h1 {
+        @extend %hero;
+        position: relative;
+        margin: 0 0 0 8rem;
+    }
+}

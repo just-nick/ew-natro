@@ -1,6 +1,63 @@
+@import '../style/breakpoint';
 @import '../style/colour';
+@import '../style/spacing';
 
 .footer-component {
     background: color('primary');
     color: color('primary', 'inverse');
+    margin-top: space('section-break');
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .social {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 2rem 0;
+
+        @include breakpoint('md') {
+            flex-direction: row;
+        }
+        
+        li {
+            margin: 0 0 2rem;
+
+            @include breakpoint('md') {
+                margin: 0 2rem 0 0;
+            }
+        }
+
+        a {
+            display: block;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            border: 3px solid;
+            color: inherit;
+            text-indent: -99999999px;
+            overflow: hidden;
+        }
+    }
+
+    .links {
+        display: block;
+        list-style: none;
+        padding: 2rem 0;
+
+        li {
+            display: block;
+        }
+
+        a {
+            display: block;
+            font-family: 'Moon';
+            color: inherit;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: right;
+        }
+    }
 }

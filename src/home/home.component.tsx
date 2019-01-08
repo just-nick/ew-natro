@@ -4,7 +4,7 @@ import { BlogHighlightListComponent } from "../blog/blog-highlight-list.componen
 import { connect, DispatchProp, MapStateToProps } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
 import { Link } from "react-router-dom";
-import { DataState } from "../service/service.reducer";
+import { DataState } from "../common/reducer";
 
 import './home.scss';
 

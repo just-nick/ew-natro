@@ -24,11 +24,12 @@ $font-sizes: (
     @return map-get(map-get($font-sizes, $name), $device) * 1rem;
 };
 
-%h1 {
+%h1-small {
     margin: space('section-break') 0 space('heading-break');
     font-family: $feature-font;
     text-transform: uppercase;
     font-size: font-size('hero');
+    line-height: .9;
     font-weight: normal;
     color: color('primary', 'inverse');
     display: flex;
@@ -40,19 +41,19 @@ $font-sizes: (
     }
 
     span {
-        padding: 0 3px;
+        padding: .2em;
         border: 1px solid;
         margin-bottom: -1px;
         margin-right: -1px;
     }
 }
 
+%h1,
 %hero {
-    @extend %h1;
+    @extend %h1-small;
     font-size: 4rem;
 
     span {
-        padding: 0 8px;
         border-width: 3px;
         margin-bottom: -3px;
         margin-right: -3px;

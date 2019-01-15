@@ -20,7 +20,7 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
                         {props.services.map((service, i) => (
                             <li key={i}>
                                 <Link to={`/services#${service.id}`}>
-                                    <img src={service.image.url} alt='' />
+                                    <img src={service.image ? service.image.url : ''} alt='' />
                                     <h3>{service.title}</h3>
                                 </Link>
                             </li>
@@ -30,10 +30,10 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
 
                 <section className='quote'>
                     <div className='container'>
-                        <img src={props.home.quote_photo.url} alt='' />
+                        <img src={props.home.quote_photo ? props.home.quote_photo.url : ''} alt='' />
                         <div className='content'>
-                            <p>{props.home.quote[0].text}</p>
-                            <footer>{props.home.by_line[0].text}</footer>
+                            <p>{props.home.quote}</p>
+                            <footer>{props.home.by_line}</footer>
                         </div>
                     </div>
                 </section>

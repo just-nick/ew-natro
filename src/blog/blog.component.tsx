@@ -12,9 +12,9 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
             if (blog.id === props.match.params.id) {
                 return <section className="container">
 
-                    <PageHeroComponent heading={blog.title[0].text} image={blog.feature_image.url} />
+                    <PageHeroComponent heading={blog.title} image={blog.feature_image.url} />
 
-                    <h2>{blog.title[0].text}</h2>
+                    <h2>{blog.title}</h2>
 
                     {writeText(blog.body)}
 

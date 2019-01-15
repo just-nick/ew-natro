@@ -1,6 +1,6 @@
-import { Hero } from "./hero";
 import React, { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { Hero } from "./hero";
 
 type Props = {
     hero: Hero;
@@ -13,7 +13,7 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
         position
     } = props;
 
-    const title = hero.title[0].text.split(' ');
+    const title = hero.title ? hero.title.split(' ') : ['Enter', 'A Title'];
     const style: CSSProperties = {
         backgroundImage: `url(${hero.image.url})`
     };
@@ -28,7 +28,7 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
                         ))}
                     </h2>
                     <p>
-                        {hero.content[0].text}
+                        {hero.content}
                     </p>
                     <Link to={'hero.cta'}>Find out more...</Link>
                 </div>

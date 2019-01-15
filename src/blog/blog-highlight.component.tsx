@@ -15,7 +15,7 @@ export const BlogHighlightComponent: React.StatelessComponent<Props> = (props) =
 
     return (
         <Link className="blog-highlight-component" style={style} to={`/blog/${props.blog.id}`}>
-            <span>{props.blog.title[0].text}</span>
+            <span>{props.blog.title}</span>
         </Link>
     );
 }

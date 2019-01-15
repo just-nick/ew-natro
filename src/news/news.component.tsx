@@ -9,11 +9,12 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
     if (props.news) {
         for(const news of props.news) {
             if (news.id === props.match.params.id) {
+                const title = news.title ? news.title.split(' ') : ['No', 'title', 'set'];
                 return <section className="container">
 
                     <div className="custom page-hero">
                         <span className="custom" style={{backgroundImage: `url('${news.feature_image.url}')`}}></span>
-                        <h1>{news.title.split(' ').map((part, i) => (<span key={i}>{part}</span>))}</h1>
+                        <h1>{title.map((part, i) => (<span key={i}>{part}</span>))}</h1>
                     </div>
 
                     <h2>{news.title}</h2>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Provider } from 'react-redux';
-import { BrowserRouter, NavLink, Route } from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { reDoMiddleware } from 'redux-re-do';
 import { AboutComponent } from "../about/about.component";
@@ -13,6 +13,8 @@ import { NewsListComponent } from "../news/news-list.component";
 import { NewsComponent } from "../news/news.component";
 import { ServiceListComponent } from "../service/service-list.component";
 import './main.scss';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { ContactComponent } from "../contact/contact.component";
 
 const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
@@ -52,13 +54,22 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                         </header>
 
                         <main>
-                            <Route path="/" exact component={HomeComponent} />
-                            <Route path="/about" exact component={AboutComponent} />
-                            <Route path="/services" exact component={ServiceListComponent} />
-                            <Route path="/news" exact component={NewsListComponent} />
-                            <Route path="/news/:id" exact component={NewsComponent} />
-                            <Route path="/blog" exact component={BlogListComponent} />
-                            <Route path="/blog/:id" exact component={BlogComponent} />
+                            <Route render={({location}) => (
+                                <TransitionGroup>
+                                    <CSSTransition key={location.key} timeout={300} classNames="route">
+                                        <Switch location={location}>
+                                            <Route path="/" exact component={HomeComponent} />
+                                            <Route path="/about" exact component={AboutComponent} />
+                                            <Route path="/services" exact component={ServiceListComponent} />
+                                            <Route path="/news" exact component={NewsListComponent} />
+                                            <Route path="/news/:id" exact component={NewsComponent} />
+                                            <Route path="/blog" exact component={BlogListComponent} />
+                                            <Route path="/blog/:id" exact component={BlogComponent} />
+                                            <Route path="/contact" exact component={ContactComponent} />
+                                        </Switch>
+                                    </CSSTransition>
+                                </TransitionGroup>
+                            )} />
                         </main>
 
                         <FooterComponent />

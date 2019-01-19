@@ -1,0 +1,29 @@
+@import '../style/colour';
+@import '../style/typography';
+@import '../style/spacing';
+
+.contact-component {
+    display: flex;
+    align-items: stretch;
+    background: color('secondary');
+
+    .content {
+        padding: space('section-break') space('gutter');
+        flex: 1 0 0;
+    }
+
+    .image {
+        flex: 1 0 0;
+        background: no-repeat center;
+        background-size: cover;
+    }
+
+    h2 {
+        @extend %h3;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+}

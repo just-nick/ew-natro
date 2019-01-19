@@ -1,3 +1,4 @@
+import { Footer } from './../footer/footer';
 import { Reducer, AnyAction, ActionCreator } from "redux";
 import { Service } from "../service/service";
 import { ReDoAction, reDo } from "redux-re-do";
@@ -7,6 +8,7 @@ import { Blog } from "../blog/blog";
 import { News } from "../news/news";
 import ApiSearchResponse from "prismic-javascript/d.ts/ApiSearchResponse";
 import { About } from "../about/about";
+import { Contact } from "../contact/contact";
 
 export interface DataState {
     services?: Service[];
@@ -14,6 +16,8 @@ export interface DataState {
     blogs?: Blog[];
     news?: News[];
     about?: About;
+    contact?: Contact;
+    footer?: Footer;
 }
 
 export interface DataAction extends DataState {
@@ -59,6 +63,20 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
                 dispatch({
                     type: DataLoaded,
                     about: { ...result, ...result.data }
+                })
+            });
+            
+            api.getSingle('contact').then((result) => {
+                dispatch({
+                    type: DataLoaded,
+                    contact: { ...result, ...result.data }
+                })
+            });
+            
+            api.getSingle('footer').then((result) => {
+                dispatch({
+                    type: DataLoaded,
+                    footer: { ...result, ...result.data }
                 })
             });
 

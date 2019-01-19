@@ -1,5 +1,5 @@
-import { TextContent } from './content';
 import React from 'react';
+import { TextContent } from './content';
 export interface PrismicData {
     id: string,
     slugs: string[],
@@ -11,21 +11,21 @@ export interface TextContent {
     spans: [],
     text: string,
     type: 'heading1'
-        | 'heading2'
-        | 'heading3'
-        | 'heading4'
-        | 'heading5'
-        | 'heading6'
-        | 'paragraph'
-        | 'image'
-        | 'list-item'
-        | 'b'
-        | 'c'
-        | 'd',
+    | 'heading2'
+    | 'heading3'
+    | 'heading4'
+    | 'heading5'
+    | 'heading6'
+    | 'paragraph'
+    | 'image'
+    | 'list-item'
+    | 'b'
+    | 'c'
+    | 'd',
     url: string,
 }
 
-const TextTypeMapping: {[key: string]: string} = {
+const TextTypeMapping: { [key: string]: string } = {
     'heading1': 'h1',
     'heading2': 'h2',
     'heading3': 'h3',
@@ -39,12 +39,12 @@ const TextTypeMapping: {[key: string]: string} = {
 
 export function writeText(content: TextContent[]): React.ReactNode {
     const children = [];
-    for(let i = 0; i < content.length; i++) {
+    for (let i = 0; i < content.length; i++) {
         const item = content[i];
 
         if (item.type === 'list-item') {
             const list = [];
-            while(content[i] && content[i].type === 'list-item') {
+            while (content[i] && content[i].type === 'list-item') {
                 list.push(<li key={i}>{content[i].text}</li>);
                 i++;
             }
@@ -53,7 +53,7 @@ export function writeText(content: TextContent[]): React.ReactNode {
             console.log(item);
             const list = [];
 
-            while(content[i] && content[i].type === 'image') {
+            while (content[i] && content[i].type === 'image') {
                 list.push(<span>
                     <img key={i} src={item.url} alt="" />
                 </span>);
@@ -62,7 +62,9 @@ export function writeText(content: TextContent[]): React.ReactNode {
             children.push(<div className={"image-block"} key={i}>{list}</div>)
         } else {
             const Tag = TextTypeMapping[item.type];
-            children.push(<Tag key={i}>{item.text}</Tag>);
+            children.push(<Tag key={i}>{item.text.split('\n').map((s, i) => (
+                <React.Fragment key={i}>{s}<br /></React.Fragment>
+            ))}</Tag>);
         }
     }
     return <>{children}</>

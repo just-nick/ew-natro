@@ -31,8 +31,52 @@ body {
     min-height: 100vh;
 }
 
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 main {
+    position: relative;
     flex: 1 0 0;
+
+    & > div {
+        min-height: 100%;
+    }
+}
+
+.route-enter,
+.route-enter-active,
+.route-enter-done,
+.route-exit,
+.route-exit-active,
+.route-exit-done {
+    transition: opacity 300ms;
+}
+
+.route-enter {
+    opacity: 0;
+}
+
+.route-enter-active {
+    opacity: 1;
+}
+
+.route-exit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.route-exit-active {
+    opacity: 0;
 }
 
 ul {
@@ -51,6 +95,7 @@ p {
     margin: auto;
     padding: 0 space('gutter');
     max-width: 980px;
+    min-height: 100%;
 }
 
 header {

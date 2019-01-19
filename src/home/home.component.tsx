@@ -11,7 +11,7 @@ import './home.scss';
 const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (props) => {
     if (props.home && props.blogs && props.services) {
         return (
-            <>
+            <div>
                 <HeroComponent heros={props.home.hero_banner} />
 
                 <section className='services container'>
@@ -50,7 +50,7 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
                 <section className='container'>
                     <h2>Follow Emma on Instagram</h2>
                 </section>
-            </>
+            </div>
         )
     }
 

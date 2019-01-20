@@ -8,11 +8,17 @@ $blog-higlight-size: 100%;
 .blog-highlight-list-component {
     @include breakpoint('md') {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
         .blog-highlight-component {
             flex: 0 0 $blog-higlight-size-desktop;
             padding-bottom: $blog-higlight-size-desktop;
+            margin-bottom: 4%;
         }
+    }
+    .blog-highlight-component {
+        margin-bottom: 4%;
     }
 }
 
@@ -38,5 +44,10 @@ $blog-higlight-size: 100%;
         color: white;
         padding: 1em;
         font-size: 1.5rem;
+
+        strong {
+            text-decoration: underline;
+            display: block;
+        }
     }
 }

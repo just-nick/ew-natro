@@ -1,7 +1,7 @@
 %button {
     color: inherit;
-    background: color('primary', 'shadow');
     text-decoration: none;
+    background: none;
     border: 1px solid;
     border-radius: 3px;
     padding: .5rem;
@@ -9,8 +9,10 @@
     cursor: pointer;
 
     &:focus,
-    &:active {
+    &:active,
+    &:hover {
         border-color: inherit;
         outline: none;
+        background: color('primary', 'shadow');
     }
 }

@@ -8,7 +8,8 @@ $colors: (
     ),
     'secondary': (
         'color': #e7e8e9,
-        'inverse': #9d9fa2
+        'inverse': #9d9fa2,
+        'shadow': darken(#e7e8e9, 10%),
     ),
     'content': (
         'color': #9d9fa2,

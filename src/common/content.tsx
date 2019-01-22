@@ -50,7 +50,6 @@ export function writeText(content: TextContent[]): React.ReactNode {
             }
             children.push(<ul key={i}>{list}</ul>)
         } else if (item.type === 'image') {
-            console.log(item);
             const list = [];
 
             while (content[i] && content[i].type === 'image') {

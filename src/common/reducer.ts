@@ -1,6 +1,6 @@
 import { Footer } from './../footer/footer';
 import { Reducer, AnyAction, ActionCreator } from "redux";
-import { Service } from "../service/service";
+import { Service, ServiceLanding } from "../service/service";
 import { ReDoAction, reDo } from "redux-re-do";
 import { getApi, Predicates } from "prismic-javascript";
 import { Home } from "../home/home";
@@ -12,6 +12,7 @@ import { Contact } from "../contact/contact";
 
 export interface DataState {
     services?: Service[];
+    serviceLanding?: ServiceLanding;
     home?: Home;
     blogs?: Blog[];
     news?: News[];
@@ -28,7 +29,6 @@ export const DataLoaded = 'DataLoadedAction';
 export const DataReducer: Reducer<DataState, AnyAction> = (state = {}, action) => {
     switch(action.type) {
         case DataLoaded:
-            console.log('Got', action);
             return {
                 ...state,
                 ...action
@@ -43,7 +43,6 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
     return reDo((dispatch) => {
         function flatDispatchContent(dataType: string) {
             return (content: ApiSearchResponse) => {
-                console.log('Got:', dataType, content);
                 dispatch({
                     type: DataLoaded,
                     [dataType]: content.results.map((result) => ({ ...result, ...result.data }))
@@ -77,6 +76,13 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
                 dispatch({
                     type: DataLoaded,
                     footer: { ...result, ...result.data }
+                })
+            });
+            
+            api.getSingle('services_landing').then((result) => {
+                dispatch({
+                    type: DataLoaded,
+                    serviceLanding: { ...result, ...result.data }
                 })
             });
 

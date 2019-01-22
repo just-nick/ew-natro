@@ -29,6 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-width: 980px;
 }
 
 @keyframes fade-in {
@@ -241,8 +242,17 @@ header {
         a {
             @extend %button;
             display: inline-block;
-            background: none;
             margin-top: space('section-break');
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            &:focus,
+            &:active,
+            &:hover {
+                border-color: inherit;
+                outline: none;
+                background: color('secondary', 'shadow');
+            }
         }
     }
 

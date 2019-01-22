@@ -8,7 +8,6 @@ type Props = {
 }
 
 export const BlogHighlightComponent: React.StatelessComponent<Props> = (props) => {
-    console.log(props.blog);
     const style: CSSProperties = {
         backgroundImage: `url('${props.blog.feature_image.url}')`
     }

@@ -10,6 +10,7 @@ export const Component: React.StatelessComponent<Props> = (props) => {
     if (props.blogs) {
         return (
             <div className="container">
+                <h2>Emma's Blog</h2>
                 <div className='blog-highlight-list-component'>
                     {props.blogs.map((blog, i) => <BlogHighlightComponent key={i} blog={blog} />)}
                 </div>

@@ -1,0 +1,49 @@
+@import '../style/colour';
+@import '../style/typography';
+@import '../style/spacing';
+
+.prices {
+    margin: 0;
+    background: color('secondary');
+    color: color('content', 'dark');
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    .container {
+        display: flex;
+
+        & > div {
+            flex: 1 0 0;
+            border-right: 3px solid #FFF;
+            padding: 1rem;
+
+            &:first-child {
+                border-left: 3px solid #FFF;
+            }
+
+            &:last-child {
+                h3 {
+                    color: color('content');
+                }
+            }
+        }
+    }
+
+    h3 {
+        @extend %h1;
+        color: color('primary');
+        margin-top: space('heading-break');
+    }
+
+    strong {
+        @extend %h1;
+        margin-top: 1rem;
+        font-size: 1.4rem;
+        color: inherit;
+    }
+
+    button {
+        display: block;
+        margin: space('heading-break') auto 0;
+    }
+}

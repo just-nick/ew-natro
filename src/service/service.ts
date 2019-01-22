@@ -6,3 +6,8 @@ export interface Service extends PrismicData {
     description: TextContent[];
     image: ImageContent;
 }
+
+export interface ServiceLanding extends PrismicData {
+    title: TextContent[];
+    header_image: ImageContent;
+}

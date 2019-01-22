@@ -10,9 +10,8 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = (props) =>
         <footer className='footer-component'>
             <div className='container'>
                 <ul className="social">
-                    {props.footer ? props.footer.social_links.map((item) => {
-                        console.log(item);
-                        return <li><a style={{backgroundImage: `url('${item.image.url}')`}} href={item.link.url} target="_blank">{item.platform_name}</a></li>;
+                    {props.footer ? props.footer.social_links.map((item, i) => {
+                        return <li key={i}><a style={{backgroundImage: `url('${item.image.url}')`}} href={item.link.url} target="_blank">{item.platform_name}</a></li>;
                     }) : null}
                 </ul>
 

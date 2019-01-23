@@ -8,7 +8,7 @@ export interface PrismicData {
 }
 
 export interface TextContent {
-    spans: [],
+    spans: any[],
     text: string,
     type: 'heading1'
     | 'heading2'
@@ -45,7 +45,7 @@ export function writeText(content: TextContent[]): React.ReactNode {
         if (item.type === 'list-item') {
             const list = [];
             while (content[i] && content[i].type === 'list-item') {
-                list.push(<li key={i}>{content[i].text}</li>);
+                list.push(<li key={i}>{writeTextNode(content[i])}</li>);
                 i++;
             }
             children.push(<ul key={i}>{list}</ul>)
@@ -61,12 +61,49 @@ export function writeText(content: TextContent[]): React.ReactNode {
             children.push(<div className={"image-block"} key={i}>{list}</div>)
         } else {
             const Tag = TextTypeMapping[item.type];
-            children.push(<Tag key={i}>{item.text.split('\n').map((s, i) => (
-                <React.Fragment key={i}>{s}<br /></React.Fragment>
-            ))}</Tag>);
+            children.push(<Tag key={i}>{writeTextNode(item)}</Tag>);
         }
     }
     return <>{children}</>
+}
+
+export function writeTextNode(item: TextContent) {
+    const content = [];
+
+    if (item.spans.length > 0) {
+        if (item.spans[0].start !== 0) {
+            content.push(newLines(item.text.slice(0, item.spans[0].start)));
+        }
+
+        let i = 0;
+        for (const span of item.spans) {
+            console.log(span);
+            const text = newLines(item.text.slice(span.start, span.end));
+
+            if (span.type === 'hyperlink') {
+                content.push(<a href={span.data.url} key={i}>{text}</a>);
+            } else {
+                content.push(<span.type key={i}>{text}</span.type>);
+            }
+            i++;
+        }
+
+        if (item.spans[item.spans.length - 1].end !== item.text.length) {
+            content.push(newLines(item.text.slice(item.spans[item.spans.length -1].end, item.text.length)));
+        }
+    } else {
+        content.push(newLines(item.text));
+    }
+
+    return content;
+}
+
+function newLines(fullString: string) {
+    return <>
+        {fullString.split('\n').map((s, i) => (
+            <React.Fragment key={i}>{s}<br /></React.Fragment>
+        ))}
+    </>
 }
 
 export interface ImageContent {

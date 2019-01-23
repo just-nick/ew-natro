@@ -10,4 +10,8 @@ export interface Service extends PrismicData {
 export interface ServiceLanding extends PrismicData {
     title: TextContent[];
     header_image: ImageContent;
+    pricing: Array<{
+        description: TextContent[],
+        price: number
+    }>;
 }

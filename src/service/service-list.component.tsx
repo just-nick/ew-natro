@@ -6,9 +6,19 @@ import { writeText } from "../common/content";
 import { PageHeroComponent } from "../page-hero/page-hero.component";
 
 import "./service-list.scss";
+import { RouteProps } from "react-router";
 
-const Component: React.StatelessComponent<DataState & DispatchProp> = (props) => {
+const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps> = (props) => {
     if (props.services && props.serviceLanding) {
+        if (props.location && props.location.hash) {
+            const elm = document.getElementById(props.location.hash.replace('#', ''));
+
+            if (elm) {
+                elm.scrollIntoView(true);
+                window.location.hash = "";
+            }
+        }
+
         return <>
             <div className="container">
 
@@ -36,26 +46,13 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = (props) =>
 
             <section className='prices'>
                 <div className='container'>
-                    <div>
-                        <h3>01.</h3>
-                        <p>Lorem ipsum dolar</p>
-                        <strong>$1000</strong>
-                    </div>
-                    <div>
-                        <h3>02.</h3>
-                        <p>Lorem ipsum dolar</p>
-                        <strong>$1000</strong>
-                    </div>
-                    <div>
-                        <h3>03.</h3>
-                        <p>Lorem ipsum dolar</p>
-                        <strong>$1000</strong>
-                    </div>
-                    <div>
-                        <h3>04.</h3>
-                        <p>Lorem ipsum dolar</p>
-                        <strong>$1000</strong>
-                    </div>
+                    {props.serviceLanding.pricing.map((price, i) => (
+                        <div key={i}>
+                            <h3>0{i + 1}.</h3>
+                            {writeText(price.description)}
+                            <strong className="price">${price.price}</strong>
+                        </div>
+                    ))}
                 </div>
 
                 <button>Book an appointment</button>
@@ -66,4 +63,4 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = (props) =>
     return <LoaderComponent />
 }
 
-export const ServiceListComponent = connect<DataState, {}, DataState>((state) => state)(Component);
+export const ServiceListComponent = connect<DataState, RouteProps, DataState>((state) => state)(Component);

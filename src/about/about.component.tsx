@@ -8,10 +8,14 @@ import { writeText } from "../common/content";
 const Component: React.StatelessComponent<DataState & DispatchProp> = (props) => {
     if (props.about) {
         return (
-            <div className='container'>
-                <PageHeroComponent heading={props.about.heading} image={props.about.image.url} />
-                {writeText(props.about.content)}
-            </div>
+            <>
+                <div className='container'>
+                    <PageHeroComponent heading={props.about.heading} image={props.about.image.url} />
+                    {writeText(props.about.content)}
+                </div>
+
+                --- Image, text, text, text in circles ---
+            </>
         );
     }
 

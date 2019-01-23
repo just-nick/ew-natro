@@ -42,9 +42,29 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                             <div className='container'>
                                 <nav>
                                     <NavLink to="/about">About</NavLink>
-                                    <NavLink to="/services">Services</NavLink>
-                                    <NavLink to="/news">News</NavLink>
-                                    <NavLink to="/blog">Blog</NavLink>
+                                    <span>
+                                        <NavLink to="/services">Services</NavLink>
+                                        <div className="sub-nav">
+                                            <NavLink to="/services">Natruropathic Services</NavLink>
+                                            <NavLink to="/health-programs">Health Programs</NavLink>
+                                        </div>
+                                    </span>
+                                    <span>
+                                        <NavLink to="/news">News</NavLink>
+                                        <div className="sub-nav">
+                                            <NavLink to="/news">News</NavLink>
+                                            <NavLink to="/events">Events</NavLink>
+                                        </div>
+                                    </span>
+                                    <span>
+                                        <NavLink to="/blog">Blog</NavLink>
+                                        <div className="sub-nav">
+                                            <NavLink to="/blogs/lifestyle">Lifestyle</NavLink>
+                                            <NavLink to="/blogs/food">Food</NavLink>
+                                            <NavLink to="/blogs/products">Products</NavLink>
+                                            <NavLink to="/blogs/people">People</NavLink>
+                                        </div>
+                                    </span>
                                     <NavLink to="/contact">Contact</NavLink>
                                     <NavLink className="home" exact={true} to="/">Home</NavLink>
                                 </nav>

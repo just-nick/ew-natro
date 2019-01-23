@@ -1,18 +1,21 @@
 @import '../style/colour';
 @import '../style/typography';
 @import '../style/spacing';
+@import '../style/components';
 
 .prices {
     margin: 0;
     background: color('secondary');
     color: color('content', 'dark');
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 
     .container {
         display: flex;
 
         & > div {
+            display: flex;
+            flex-direction: column;
             flex: 1 0 0;
             border-right: 3px solid #FFF;
             padding: 1rem;
@@ -35,7 +38,11 @@
         margin-top: space('heading-break');
     }
 
-    strong {
+    p {
+        flex: 1 0 0;
+    }
+
+    .price {
         @extend %h1;
         margin-top: 1rem;
         font-size: 1.4rem;
@@ -43,7 +50,13 @@
     }
 
     button {
+        @extend %button;
+        font-size: .9rem;
+        padding: 1rem 2rem;
+        font-weight: bold;
         display: block;
-        margin: space('heading-break') auto 0;
+        margin: 2rem auto 0;
+        color: color('content', 'inverse');
+        background: color('content');
     }
 }

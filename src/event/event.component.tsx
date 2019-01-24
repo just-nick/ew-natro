@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, DispatchProp } from "react-redux";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, Redirect } from "react-router-dom";
 import { writeText } from "../common/content";
 import { LoaderComponent } from "../loader/loader.component";
 import { DataState } from "../common/reducer";
@@ -24,7 +24,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
                 </section>;
             }
 
-            return <h1>Story not found...</h1>
+            return <Redirect to="/news/events" />;
         }
     }
 

@@ -25,7 +25,11 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
                     <p>
                         {hero.content}
                     </p>
-                    <Link to={'hero.cta'}>Find out more</Link>
+                    {hero.link.slice(0,1) === '/' ? (
+                        <Link to={hero.link}>Find out more</Link>
+                    ) : (
+                        <a href={hero.link}>Find out more</a>
+                    )}
                 </div>
             </div>
         </section>

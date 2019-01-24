@@ -15,7 +15,6 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
 
             if (elm) {
                 elm.scrollIntoView(true);
-                window.location.hash = "";
             }
         }
 

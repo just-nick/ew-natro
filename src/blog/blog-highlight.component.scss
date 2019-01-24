@@ -3,32 +3,23 @@
 @import '../style/breakpoint';
 
 $blog-higlight-size-desktop: 48%;
+$blog-higlight-height-desktop: 58%;
 $blog-higlight-size: 100%;
 
 .blog-highlight-list-component {
-    @include breakpoint('md') {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .blog-highlight-component {
-            flex: 0 0 $blog-higlight-size-desktop;
-            padding-bottom: $blog-higlight-size-desktop;
-            margin-bottom: 4%;
-        }
-    }
-    .blog-highlight-component {
-        margin-bottom: 4%;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .blog-highlight-component {
+    flex: 0 0 $blog-higlight-size-desktop;
+    padding-bottom: $blog-higlight-height-desktop;
+    margin-bottom: 4%;
     position: relative;
     display: block;
     background: color('secondary') center center;
     background-size: contain;
-    width: $blog-higlight-size;
-    padding-bottom: $blog-higlight-size;
     background-size: cover;
     text-decoration: none;
 

@@ -3,6 +3,10 @@
 @import '../style/typography';
 
 .services {
+    h2 {
+        padding-top: space('section-break');
+    }
+
     ul {
         display: flex;
         flex-wrap: wrap;
@@ -30,11 +34,11 @@
 
     h3 {
         font-size: 1rem;
+        font-family: Moon, Arial, Helvetica, sans-serif;
         background: color('secondary');
         color: color('secondary', 'inverse');
         padding: 1rem space('gutter');
         white-space: nowrap;
-        text-transform: uppercase;
     }
 
     a {
@@ -44,8 +48,9 @@
 }
 
 .quote {
-    margin: space('section-break') 0 0;
+    margin: space('section-break') 0;
     background: color('secondary');
+    color: color('secondary', 'inverse');
     padding-top: 2rem;
     padding-bottom: 2rem;
     font-weight: bold;
@@ -61,8 +66,8 @@
         background: color('content');
         border: 2px solid color('content', 'inverse');
         border-radius: 50%;
-        height: 150px;
-        width: 150px;
+        height: 200px;
+        width: 200px;
         margin-right: 2rem;
     }
 

@@ -6,20 +6,26 @@
     display: flex;
     align-items: stretch;
     background: color('secondary');
+    color: color('secondary', 'inverse');
 
     .content {
-        padding: space('section-break') space('gutter');
+        padding: 3rem;
         flex: 1 0 0;
     }
 
     .image {
         flex: 1 0 0;
+        padding: 3rem;
         background: no-repeat center;
         background-size: cover;
     }
 
     h2 {
-        @extend %h3;
+        border: none;
+        font-family: Moon, Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+        color: inherit;
+        margin-bottom: space('content-break');
 
         &:first-child {
             margin-top: 0;

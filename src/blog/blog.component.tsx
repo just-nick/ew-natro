@@ -30,7 +30,6 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
 
 function getBlog(id: string, blogs: Blog[]): Blog | null {
     for (const blog of blogs) {
-        console.log(blogs, blog.id, ' === ', id);
         if (blog.id === id) {
             return blog;
         }

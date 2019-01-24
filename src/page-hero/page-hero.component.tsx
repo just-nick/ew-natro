@@ -17,12 +17,10 @@ export const PageHeroComponent: React.StatelessComponent<Props> = (props) => {
         customImage = <span className="custom" style={{backgroundImage: `url('${props.image}')`}}></span>
     }
 
-    const heading = props.heading ? props.heading.split(' ') : ['No', 'heading', 'set'];
-
     return (
         <div className={`page-hero ${props.type} ${customClass}`}>
             {customImage}
-            <h1>{heading.map((part, i) => (<span key={i}>{part}</span>))}</h1>
+            <h1>{props.heading}</h1>
         </div>
     );
 }

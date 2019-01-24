@@ -5,11 +5,12 @@
 .page-hero {
     position: relative;
     display: flex;
-    min-height: 40rem;
+    min-height: 34rem;
     background: color('primary');
     color: color('primary', 'inverse');
     align-items: center;
     justify-content: center;
+    margin-bottom: space('section-break');
 
     &::before,
     .custom {

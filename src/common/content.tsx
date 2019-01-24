@@ -77,7 +77,6 @@ export function writeTextNode(item: TextContent) {
 
         let i = 0;
         for (const span of item.spans) {
-            console.log(span);
             const text = newLines(item.text.slice(span.start, span.end));
 
             if (span.type === 'hyperlink') {

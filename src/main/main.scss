@@ -23,6 +23,8 @@ body {
     padding: 0;
     margin: 0;
     color: color('content');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
@@ -135,12 +137,13 @@ header {
     }
 
     nav {
+        $nav-side-pad: 1.4rem;
         position: relative;
         order: 1;
         display: flex;
         flex: 1 1 auto;
         width: 100%;
-        margin-left: - space('gutter');
+        margin-left: - $nav-side-pad;
         margin-top: space('gutter');
 
         @include breakpoint('lg') {
@@ -156,7 +159,7 @@ header {
             text-transform: uppercase;
             color: color('content');
             text-decoration: none;
-            padding: 0.5rem space('gutter');
+            padding: 0.5rem $nav-side-pad;
 
             &.home {
                 margin: 5px 1.8rem 0 auto;
@@ -249,9 +252,9 @@ header {
 .block-item {
     $block-gutter: 2rem;
     display: flex;
-    margin: space('section-break') 0;
+    margin: 0.5rem 0;
     background: color('secondary');
-    color: color('content', 'dark');
+    color: color('secondary', 'inverse');
 
     .feature {
         display: flex;
@@ -262,7 +265,7 @@ header {
         background-size: cover;
         color: color('primary', 'inverse');
         flex: 0 0 14rem;
-        min-height: 14rem;
+        min-height: 10rem;
         padding: $block-gutter;
         text-align: center;
 
@@ -282,7 +285,7 @@ header {
         a {
             @extend %button;
             display: inline-block;
-            margin-top: space('section-break');
+            margin-top: space('heading-break');
             padding-left: 1rem;
             padding-right: 1rem;
 
@@ -298,6 +301,6 @@ header {
 
     h2 {
         @extend %h3;
-        margin-top: 0;
+        margin: 0 0 1rem;
     }
 }

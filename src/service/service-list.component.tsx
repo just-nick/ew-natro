@@ -19,7 +19,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
             }
         }
 
-        return <>
+        return <div>
             <div className="container">
 
                 <PageHeroComponent heading={props.serviceLanding.title[0].text} image={props.serviceLanding.header_image.url} />
@@ -38,13 +38,11 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
                         </div>
                     );
                 })}
-            </div>
-
-            <div className='container'>
+                
                 <h2>Consultations with Emma</h2>
             </div>
 
-            <section className='prices'>
+            <div className='prices'>
                 <div className='container'>
                     {props.serviceLanding.pricing.map((price, i) => (
                         <div key={i}>
@@ -56,8 +54,8 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
                 </div>
 
                 <button>Book an appointment</button>
-            </section>
-        </>
+            </div>
+        </div>
     }
 
     return <LoaderComponent />

@@ -13,7 +13,7 @@ $font-sizes: (
         'mobile': 2.5
     ),
     'h2': (
-        'mobile': 1.2
+        'mobile': 1.15
     ),
     'h3': (
         'mobile': 1.1
@@ -29,12 +29,13 @@ $font-sizes: (
     font-family: $feature-font;
     text-transform: uppercase;
     font-size: font-size('hero');
-    line-height: .9;
     font-weight: normal;
     color: color('primary', 'inverse');
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    border: none;
+    text-decoration: underline;
 
     @include breakpoint('sm') {
         flex-wrap: nowrap;
@@ -64,11 +65,14 @@ $font-sizes: (
     margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h2');
     color: color('content');
-    border-bottom: 1px solid;
+    border-bottom: 2px solid;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 %h3 {
-    text-transform: uppercase;
     margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h3');
     color: inherit;

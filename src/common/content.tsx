@@ -49,6 +49,7 @@ export function writeText(content: TextContent[]): React.ReactNode {
                 i++;
             }
             children.push(<ul key={i}>{list}</ul>)
+            i--;
         } else if (item.type === 'image') {
             const list = [];
 
@@ -59,6 +60,7 @@ export function writeText(content: TextContent[]): React.ReactNode {
                 i++;
             }
             children.push(<div className={"image-block"} key={i}>{list}</div>)
+            i--;
         } else {
             const Tag = TextTypeMapping[item.type];
             children.push(<Tag key={i}>{writeTextNode(item)}</Tag>);

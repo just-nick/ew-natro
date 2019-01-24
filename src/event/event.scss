@@ -1,0 +1,24 @@
+@import '../style/colour';
+
+.block-item.event-item {
+    .content {
+        a {
+            margin-top: -2rem;
+            float: right;
+            background: color('content');
+            color: color('content', 'inverse');
+            border-color: color('content');
+
+            &:hover {
+                background: color('content', 'dark');
+                border-color: color('content', 'dark');
+            }
+        }
+
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+    }
+}

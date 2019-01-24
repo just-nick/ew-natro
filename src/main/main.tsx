@@ -17,6 +17,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { ContactComponent } from "../contact/contact.component";
 import { HealthProgramListComponent } from "../health-program/health-program-list.component";
 import { HealthProgramComponent } from "../health-program/health-program.component";
+import { EventListComponent } from "../event/event-list.component";
+import { EventComponent } from "../event/event.component";
 
 const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
@@ -55,7 +57,7 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                         <NavLink to="/news">News</NavLink>
                                         <div className="sub-nav">
                                             <NavLink to="/news">News</NavLink>
-                                            <NavLink to="/events">Events</NavLink>
+                                            <NavLink to="/news/events">Events</NavLink>
                                         </div>
                                     </span>
                                     <span>
@@ -81,15 +83,22 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                     <CSSTransition key={location.key} timeout={300} classNames="route">
                                         <Switch location={location}>
                                             <Route path="/" exact component={HomeComponent} />
+
                                             <Route path="/about" exact component={AboutComponent} />
+
                                             <Route path="/services" exact component={ServiceListComponent} />
-                                            <Route path="/news" exact component={NewsListComponent} />
-                                            <Route path="/news/:id" exact component={NewsComponent} />
-                                            <Route path="/blog" exact component={BlogListComponent} />
-                                            <Route path="/blog/:id" exact component={BlogComponent} />
-                                            <Route path="/contact" exact component={ContactComponent} />
                                             <Route path="/services/health-programs" exact component={HealthProgramListComponent} />
                                             <Route path="/services/health-programs/:id" exact component={HealthProgramComponent} />
+
+                                            <Route path="/news" exact component={NewsListComponent} />
+                                            <Route path="/news/events" exact component={EventListComponent} />
+                                            <Route path="/news/:id" exact component={NewsComponent} />
+                                            <Route path="/news/events/:id" exact component={EventComponent} />
+
+                                            <Route path="/blog" exact component={BlogListComponent} />
+                                            <Route path="/blog/:id" exact component={BlogComponent} />
+                                            
+                                            <Route path="/contact" exact component={ContactComponent} />
                                         </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>

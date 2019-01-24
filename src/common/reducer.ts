@@ -10,6 +10,7 @@ import { News } from "../news/news";
 import ApiSearchResponse from "prismic-javascript/d.ts/ApiSearchResponse";
 import { About } from "../about/about";
 import { Contact } from "../contact/contact";
+import { Event } from '../event/event';
 
 export interface DataState {
     services?: Service[];
@@ -21,6 +22,7 @@ export interface DataState {
     contact?: Contact;
     footer?: Footer;
     healthPrograms?: HealthProgram[];
+    events?: Event[];
 }
 
 export interface DataAction extends DataState {
@@ -103,6 +105,10 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
             api.query(
                 Predicates.at('document.type', 'health_program'), {}
             ).then(flatDispatchContent('healthPrograms'));
+
+            api.query(
+                Predicates.at('document.type', 'event'), {}
+            ).then(flatDispatchContent('events'));
         });
     });
 }

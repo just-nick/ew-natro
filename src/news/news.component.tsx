@@ -17,8 +17,6 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
                         <h1>{title.map((part, i) => (<span key={i}>{part}</span>))}</h1>
                     </div>
 
-                    <h2>{news.title}</h2>
-
                     {writeText(news.content)}
 
                 </section>;

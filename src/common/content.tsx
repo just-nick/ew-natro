@@ -48,19 +48,23 @@ export function writeText(content: TextContent[]): React.ReactNode {
                 list.push(<li key={i}>{writeTextNode(content[i])}</li>);
                 i++;
             }
-            children.push(<ul key={i}>{list}</ul>)
+
             i--;
+            children.push(<ul key={i}>{list}</ul>);
         } else if (item.type === 'image') {
             const list = [];
 
             while (content[i] && content[i].type === 'image') {
-                list.push(<span>
-                    <img key={i} src={item.url} alt="" />
+                const image = content[i] as any as ImageContent;
+                const style = {flexGrow: image.dimensions.width/image.dimensions.height};
+                list.push(<span key={i} style={style}>
+                    <img src={image.url} alt="" />
                 </span>);
                 i++;
             }
-            children.push(<div className={"image-block"} key={i}>{list}</div>)
+
             i--;
+            children.push(<div className={"image-block"} key={i}>{list}</div>);
         } else {
             const Tag = TextTypeMapping[item.type];
             children.push(<Tag key={i}>{writeTextNode(item)}</Tag>);
@@ -100,11 +104,9 @@ export function writeTextNode(item: TextContent) {
 }
 
 function newLines(fullString: string) {
-    return <>
-        {fullString.split('\n').map((s, i) => (
-            <React.Fragment key={i}>{s}<br /></React.Fragment>
-        ))}
-    </>
+    return fullString.split('\n').map((s, i) => (
+        <React.Fragment key={i}>{s}<br /></React.Fragment>
+    ));
 }
 
 export interface ImageContent {

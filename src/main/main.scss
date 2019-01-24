@@ -1,3 +1,5 @@
+@import './reset';
+
 @import '../style/typography';
 @import '../style/spacing';
 @import '../style/colour';
@@ -9,22 +11,12 @@
     src: url('../assets/moon-bold.woff');
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 html,
 body {
     font-family: $default-font;
     font-size: 16px;
     line-height: 1.5;
-    padding: 0;
-    margin: 0;
     color: color('content');
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
@@ -101,6 +93,10 @@ a {
     &:hover {
         text-decoration: underline;
     }
+}
+
+button {
+    @extend %button;
 }
 
 .container {
@@ -239,12 +235,14 @@ header {
     display: flex;
     width: 100%;
     overflow: hidden;
+    align-items: stretch;
 
     span {
-        flex: 1 1 0;
+        flex: 0 0 0;
     }
 
     img {
+        display: block;
         width: 100%;
     }
 }
@@ -275,6 +273,7 @@ header {
 
         button {
             @extend %button;
+            margin: 0;
         }
     }
 
@@ -285,17 +284,8 @@ header {
         a {
             @extend %button;
             display: inline-block;
-            margin-top: space('heading-break');
             padding-left: 1rem;
             padding-right: 1rem;
-
-            &:focus,
-            &:active,
-            &:hover {
-                border-color: inherit;
-                outline: none;
-                background: color('secondary', 'shadow');
-            }
         }
     }
 

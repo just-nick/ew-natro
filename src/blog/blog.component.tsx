@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, DispatchProp } from "react-redux";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, Redirect } from "react-router-dom";
 import { writeText } from "../common/content";
 import { LoaderComponent } from "../loader/loader.component";
 import { DataState } from "../common/reducer";
@@ -22,7 +22,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
             </section>;
         }
 
-        return <section className="container"><h2>Story not found...</h2></section>
+        return <Redirect to="/blogs" />;
     }
 
     return <LoaderComponent />

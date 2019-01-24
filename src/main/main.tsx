@@ -15,6 +15,8 @@ import { ServiceListComponent } from "../service/service-list.component";
 import './main.scss';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { ContactComponent } from "../contact/contact.component";
+import { HealthProgramListComponent } from "../health-program/health-program-list.component";
+import { HealthProgramComponent } from "../health-program/health-program.component";
 
 const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
@@ -46,7 +48,7 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                         <NavLink to="/services">Services</NavLink>
                                         <div className="sub-nav">
                                             <NavLink to="/services">Natruropathic Services</NavLink>
-                                            <NavLink to="/health-programs">Health Programs</NavLink>
+                                            <NavLink to="/services/health-programs">Health Programs</NavLink>
                                         </div>
                                     </span>
                                     <span>
@@ -86,6 +88,8 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                             <Route path="/blog" exact component={BlogListComponent} />
                                             <Route path="/blog/:id" exact component={BlogComponent} />
                                             <Route path="/contact" exact component={ContactComponent} />
+                                            <Route path="/services/health-programs" exact component={HealthProgramListComponent} />
+                                            <Route path="/services/health-programs/:id" exact component={HealthProgramComponent} />
                                         </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>

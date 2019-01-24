@@ -1,3 +1,4 @@
+import { HealthProgram } from './../health-program/health-program';
 import { Footer } from './../footer/footer';
 import { Reducer, AnyAction, ActionCreator } from "redux";
 import { Service, ServiceLanding } from "../service/service";
@@ -19,6 +20,7 @@ export interface DataState {
     about?: About;
     contact?: Contact;
     footer?: Footer;
+    healthPrograms?: HealthProgram[];
 }
 
 export interface DataAction extends DataState {
@@ -97,6 +99,10 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
             api.query(
                 Predicates.at('document.type', 'news_item'), {}
             ).then(flatDispatchContent('news'));
+
+            api.query(
+                Predicates.at('document.type', 'health_program'), {}
+            ).then(flatDispatchContent('healthPrograms'));
         });
     });
 }

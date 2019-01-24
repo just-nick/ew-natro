@@ -66,6 +66,12 @@
 
     a {
         @extend %button;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background: color('primary', 'shadow');
+        }
     }
 
     .previous {

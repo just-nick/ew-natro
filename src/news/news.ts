@@ -6,4 +6,5 @@ export interface News extends PrismicData {
     summary: string;
     content: TextContent[];
     feature_image: ImageContent;
+    thumbnail: ImageContent;
 }

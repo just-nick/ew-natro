@@ -9,7 +9,7 @@ type Props = {
 
 export const BlogHighlightComponent: React.StatelessComponent<Props> = (props) => {
     const style: CSSProperties = {
-        backgroundImage: `url('${props.blog.feature_image.url}')`
+        backgroundImage: `url('${props.blog.thumbnail.url}')`
     }
 
     return (

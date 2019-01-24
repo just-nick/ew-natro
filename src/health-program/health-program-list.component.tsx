@@ -15,7 +15,7 @@ const Component: React.StatelessComponent<RouterProps & DispatchProp & DataState
                 <h2>Health Programs</h2>
 
                 {props.healthPrograms.map((program, i) => {            
-                    const image = <span className="image" style={{backgroundImage: `url('${program.image.url}')`}}></span>
+                    const image = <span className="image" style={{backgroundImage: `url('${program.thumbnail.url}')`}}></span>
 
                     return <Link to={`/services/health-programs/${program.id}`} key={i} className="health-program-highlight">
                         <h2>{program.title}</h2>

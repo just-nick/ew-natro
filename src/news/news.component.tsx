@@ -13,7 +13,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
                 return <section className="container">
 
                     <div className="custom page-hero">
-                        <span className="custom" style={{backgroundImage: `url('${news.feature_image.url}')`}}></span>
+                        <span className="custom" style={{backgroundImage: `url('${news.thumbnail.url}')`}}></span>
                         <h1>{title.map((part, i) => (<span key={i}>{part}</span>))}</h1>
                     </div>
 

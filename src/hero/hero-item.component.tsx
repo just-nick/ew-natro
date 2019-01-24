@@ -25,7 +25,7 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
                     <p>
                         {hero.content}
                     </p>
-                    <Link to={'hero.cta'}>Find out more...</Link>
+                    <Link to={'hero.cta'}>Find out more</Link>
                 </div>
             </div>
         </section>

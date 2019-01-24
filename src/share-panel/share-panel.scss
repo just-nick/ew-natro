@@ -1,0 +1,46 @@
+@import '../style/colour';
+
+.share {
+    display: flex;
+    list-style: none;
+    padding: 2rem 0;
+    justify-content: flex-end;
+    
+    li {
+        margin: 0 1rem 0 0;
+    }
+
+    .facebook {
+        background-image: url('../assets/facebook.svg');
+
+        &:hover {
+            background-image: url('../assets/facebook.hover.svg');
+        }
+    }
+
+    .linkedin {
+        background-image: url('../assets/linkedin.svg');
+
+        &:hover {
+            background-image: url('../assets/linkedin.hover.svg');
+        }
+    }
+
+    a {
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 3px solid;
+        color: inherit;
+        text-indent: -99999999px;
+        overflow: hidden;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 60%;
+
+        &:hover {
+            background-color: color('content');
+        }
+    }
+}

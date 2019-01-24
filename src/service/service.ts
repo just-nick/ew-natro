@@ -12,6 +12,7 @@ export interface ServiceLanding extends PrismicData {
     header_image: ImageContent;
     pricing: Array<{
         description: TextContent[],
-        price: number
+        price: number,
+        disclaimer: string
     }>;
 }

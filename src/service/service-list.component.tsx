@@ -47,7 +47,9 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
                         <div key={i}>
                             <h3>0{i + 1}.</h3>
                             {writeText(price.description)}
-                            <strong className="price">${price.price}</strong>
+                            <strong className="price">
+                                ${price.price.toFixed(2)} <small>{price.disclaimer}</small>
+                            </strong>
                         </div>
                     ))}
                 </div>

@@ -5,14 +5,14 @@ import './footer.scss';
 import { DispatchProp, connect } from "react-redux";
 import { DataState } from "../common/reducer";
 
-const Component: React.StatelessComponent<DataState & DispatchProp> = (props) => {
+const Component: React.StatelessComponent<DataState & DispatchProp> = () => {
     return (
         <footer className='footer-component'>
             <div className='container'>
                 <ul className="social">
-                    {props.footer ? props.footer.social_links.map((item, i) => {
-                        return <li key={i}><a style={{backgroundImage: `url('${item.image.url}')`}} href={item.link.url} target="_blank">{item.platform_name}</a></li>;
-                    }) : null}
+                    <li><a className="facebook" href="" target="_blank">Facebook</a></li>
+                    <li><a className="linkedin" href="" target="_blank">Linkedin</a></li>
+                    <li><a className="instagram" href="" target="_blank">Instagram</a></li>
                 </ul>
 
                 <ul className="links">

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf ./dist && webpack && cp ./_redirects ./dist/_redirects",
+    "build": "rm -rf ./dist && NODE_ENV=production webpack && cp ./_redirects ./dist/_redirects",
     "start": "webpack-dev-server --historyApiFallback",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

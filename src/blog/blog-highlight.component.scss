@@ -43,3 +43,48 @@ $blog-higlight-size: 100%;
         }
     }
 }
+
+.similar-blogs {
+    display: flex;
+
+    a {
+        flex: 0 0 24%;
+        margin-left: 1%;
+        height: 17rem;
+        background: center no-repeat;
+        background-size: cover;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:first-child {
+            margin: 0;
+        }
+
+        span {
+            @extend %h1;
+            transition: opacity 300ms, display 300ms;
+            display: block;
+            opacity: 0;
+            margin: 0;
+            padding: 2rem;
+            height: 100%;
+            background: color('primary');
+            font-size: 1.8rem;
+            text-decoration: none;
+
+            strong {
+                display: block;
+                text-decoration: underline;
+            }
+        }
+
+        &:hover {
+            span {
+                opacity: 1;
+            }
+        }
+    }
+}

@@ -20,7 +20,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
 
                     {writeText(event.content)}
 
-                    <SharePanelComponent />
+                    <SharePanelComponent title={event.title} />
                 </section>;
             }
 

@@ -38,14 +38,31 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
                     </div>
                 </section>
 
-                <section className='container'>
+                <section className='container home-blog'>
                     <h2>The latest from Emma's blog</h2>
-                    <BlogHighlightListComponent blogs={props.blogs} />
+                    <BlogHighlightListComponent blogs={props.blogs.slice(0, 2)} />
                 </section>
 
-                <form className='container'>
-                    <h2>Subscribe for the latest news &amp; events</h2>
-                </form>
+                <div className="home-form">
+                    <div className="container">
+                        <h2>Subscribe for the latest news &amp; events</h2>
+
+                        <form action="https://formspree.io/emma@emmawiseman.com.au"
+                              method="POST"
+                              encType="multipart/form-data">
+                            <input type="text" name="first_name" placeholder="First Name" />
+                            <input type="text" name="first_name" placeholder="Second Name" />
+                            <input type="email" name="_replyto" placeholder="Email Address" />
+
+                            <input type="hidden" name="_subject" value="Contact form submitted" />
+                            <input type="hidden" name="_next" value={window.location.href} />
+
+                            <button type="submit" value="Send">Sign Up</button>
+
+                            <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                        </form>
+                    </div>
+                </div>
 
                 <section className='container'>
                     <h2>Follow Emma on Instagram</h2>

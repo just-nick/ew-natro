@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Provider } from 'react-redux';
-import { BrowserRouter, NavLink, Route, Switch } from "react-router-dom";
+import { NavLink, Route, Switch, Router } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { reDoMiddleware } from 'redux-re-do';
 import { AboutComponent } from "../about/about.component";
@@ -12,7 +12,6 @@ import { HomeComponent } from "../home/home.component";
 import { NewsListComponent } from "../news/news-list.component";
 import { NewsComponent } from "../news/news.component";
 import { ServiceListComponent } from "../service/service-list.component";
-import './main.scss';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { ContactComponent } from "../contact/contact.component";
 import { HealthProgramListComponent } from "../health-program/health-program-list.component";
@@ -20,12 +19,27 @@ import { HealthProgramComponent } from "../health-program/health-program.compone
 import { EventListComponent } from "../event/event-list.component";
 import { EventComponent } from "../event/event.component";
 
+import './main.scss';
+import { createBrowserHistory, History } from "history";
+import { FaqsComponent } from "../faqs/faqs.component";
+import { PrivacyComponent } from "../privacy/privacy.component";
+
 const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
 export class MainComponent extends React.Component<{}, {showNav: boolean}> {
+    private history: History;
+
     public state = {
         showNav: false
     };
+
+    constructor (props: any) {
+        super(props);
+        this.history = createBrowserHistory();
+        this.history.listen(() => {
+            window.scrollTo(0,0);
+        });
+    }
 
     public componentDidMount() {
         store.dispatch(GetData());
@@ -39,7 +53,7 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
 
     public render() {
         return (
-            <BrowserRouter>
+            <Router history={this.history}>
                 <Provider store={store}>
                     <React.Fragment>
                         <header>
@@ -63,10 +77,10 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                     <span>
                                         <NavLink to="/blog">Blog</NavLink>
                                         <div className="sub-nav">
-                                            <NavLink to="/blogs/lifestyle">Lifestyle</NavLink>
-                                            <NavLink to="/blogs/food">Food</NavLink>
-                                            <NavLink to="/blogs/products">Products</NavLink>
-                                            <NavLink to="/blogs/people">People</NavLink>
+                                            <NavLink to="/blog/lifestyle">Lifestyle</NavLink>
+                                            <NavLink to="/blog/food">Food</NavLink>
+                                            <NavLink to="/blog/products">Products</NavLink>
+                                            <NavLink to="/blog/people">People</NavLink>
                                         </div>
                                     </span>
                                     <NavLink to="/contact">Contact</NavLink>
@@ -96,9 +110,16 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                             <Route path="/news/events/:id" exact component={EventComponent} />
 
                                             <Route path="/blog" exact component={BlogListComponent} />
+                                            <Route path="/blog/lifestyle" exact component={BlogListComponent} />
+                                            <Route path="/blog/food" exact component={BlogListComponent} />
+                                            <Route path="/blog/people" exact component={BlogListComponent} />
+                                            <Route path="/blog/products" exact component={BlogListComponent} />
                                             <Route path="/blog/:id" exact component={BlogComponent} />
                                             
                                             <Route path="/contact" exact component={ContactComponent} />
+
+                                            <Route path="/privacy" exact component={PrivacyComponent} />
+                                            <Route path="/faqs" exact component={FaqsComponent} />
                                         </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>
@@ -108,7 +129,7 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                         <FooterComponent />
                     </React.Fragment>
                 </Provider>
-            </BrowserRouter>
+            </Router>
         )
     }
 }

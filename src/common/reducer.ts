@@ -1,3 +1,5 @@
+import { Privacy } from './../privacy/privacy.component';
+import { Faqs } from './../faqs/faqs.component';
 import { HealthProgram } from './../health-program/health-program';
 import { Footer } from './../footer/footer';
 import { Reducer, AnyAction, ActionCreator } from "redux";
@@ -23,6 +25,8 @@ export interface DataState {
     footer?: Footer;
     healthPrograms?: HealthProgram[];
     events?: Event[];
+    faqs?: Faqs;
+    privacy?: Privacy;
 }
 
 export interface DataAction extends DataState {
@@ -87,6 +91,20 @@ export const GetData: ActionCreator<ReDoAction<DataAction, DataState>> = () => {
                 dispatch({
                     type: DataLoaded,
                     serviceLanding: { ...result, ...result.data }
+                })
+            });
+            
+            api.getSingle('faqs').then((result) => {
+                dispatch({
+                    type: DataLoaded,
+                    faqs: { ...result, ...result.data }
+                })
+            });
+            
+            api.getSingle('privacy').then((result) => {
+                dispatch({
+                    type: DataLoaded,
+                    privacy: { ...result, ...result.data }
                 })
             });
 

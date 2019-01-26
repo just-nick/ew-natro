@@ -1,0 +1,32 @@
+@import '../style/spacing';
+@import '../style/colour';
+@import '../style/typography';
+
+.about-badges {
+    margin: space('section-break') 0 0;
+    background: color('secondary');
+    font-family: $feature-font;
+    font-size: 0.8rem;
+    text-align: center;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 3rem space('heading-break');
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        flex: 0 0 21%;
+        padding: 2rem 1.5rem;
+        border: 2px solid #fff;
+        border-radius: 50%;
+    }
+
+    .logo {
+        padding: 0 0 21%;
+        background: url('../assets/ribbon.svg') no-repeat center;
+        background-size: 60%;
+    }
+}

@@ -88,3 +88,56 @@
         }
     }
 }
+
+.home-blog {
+    .blog-highlight-component {
+        margin: 0;
+    }
+}
+
+.home-form {
+    background: color('secondary');
+    margin: space('section-break') 0;
+    padding: space('section-break') 0;
+
+    h2 {
+        border-color: #fff;
+    }
+
+    form {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input {
+        font-weight: bold;
+        color: color('content');
+        font-size: font-size('h2');
+        flex: 1 1 0;
+        border: 2px solid #fff;
+        padding: 1rem .5rem;
+        background: none;
+        margin-left: 1%;
+
+        &:first-child {
+            margin: 0;
+        }
+
+        &::placeholder {
+            opacity: 1;
+            color: color('content');
+        }
+    }
+
+    button {
+        font-weight: bold;
+        background: color('content');
+        color: #fff;
+        font-size: font-size('h2');
+        flex: 1 0 0;
+        border: 2px solid color('content');
+        padding: 1rem .5rem;
+        margin: 0 0 0 1%;
+        border-radius: 0;
+    }
+}

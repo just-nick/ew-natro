@@ -37,7 +37,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
                         </div>
                     );
                 })}
-                
+
                 <h2>Consultations with Emma</h2>
             </div>
 
@@ -55,6 +55,16 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
                 </div>
 
                 <button>Book an appointment</button>
+            </div>
+
+            <div className="container">
+                <div className="service-quote">
+                    <div>
+                        <p>{props.serviceLanding.quote_text}</p>
+                        <span>{props.serviceLanding.quote_by}</span>
+                    </div>
+                    <span className="image" style={{ backgroundImage: `url('${props.serviceLanding.quote_image.url}')` }}></span>
+                </div>
             </div>
         </div>
     }

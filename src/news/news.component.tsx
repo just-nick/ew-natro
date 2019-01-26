@@ -4,6 +4,7 @@ import { RouteComponentProps, Redirect } from "react-router-dom";
 import { writeText } from "../common/content";
 import { LoaderComponent } from "../loader/loader.component";
 import { DataState } from "../common/reducer";
+import { SharePanelComponent } from "../share-panel/share-panel.component";
 
 const Component: React.StatelessComponent<DataState & DispatchProp & RouteComponentProps<any>> = (props) => {
     if (props.news) {
@@ -18,6 +19,8 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
                     </div>
 
                     {writeText(news.content)}
+
+                    <SharePanelComponent title={news.title} />
 
                 </section>;
             }

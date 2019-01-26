@@ -66,3 +66,33 @@
         background: color('content');
     }
 }
+
+.service-quote {
+    position: relative;
+    display: flex;
+    min-height: 30rem;
+    background: color('primary');
+    color: color('primary', 'inverse');
+    align-items: center;
+    margin-top: space('section-break');
+
+    .image {
+        display: block;
+        background: color('content') no-repeat center;
+        background-size: cover;
+        flex: 1 0 0;
+        padding: 4rem;
+        align-self: stretch;
+    }
+
+    div {
+        padding: 4rem;
+        flex: 1 0 0;
+        
+        p {
+            font-size: 1.7rem;
+            font-weight: bold;
+            margin: 0 0 space('heading-break');
+        }
+    }
+}

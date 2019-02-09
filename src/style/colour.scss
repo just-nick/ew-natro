@@ -8,15 +8,24 @@ $colors: (
     ),
     'secondary': (
         'color': #e7e8e9,
-        'inverse': #9d9fa2, // #636466
+        'inverse': #808285,
+        'dark': #999999,
+        'dark-inverse': #fff,
         'shadow': darken(#e7e8e9, 10%),
     ),
     'content': (
         'color': #9d9fa2,
         'dark': #636466,
         'inverse': #fff
+    ),
+    'nav': (
+        'color': #999999,
+        'inverse': #ffffff
     )
 );
+
+$hero-button-color: #a5cac2;
+$hero-button-hover: #94b4ae;
 
 @function color($name, $variant: 'color') {
     @return map-get(map-get($colors, $name), $variant)

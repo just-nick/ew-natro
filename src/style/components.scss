@@ -12,7 +12,8 @@
     font-weight: bold;
     font-size: 0.9rem;
     margin-top: space('heading-break');
-
+    background: rgba(0,0,0,0);
+    transition: background-color 500ms;
 
     &:focus,
     &:active,
@@ -20,5 +21,6 @@
         border-color: inherit;
         outline: none;
         background: color('secondary', 'shadow');
+        text-decoration: none;
     }
 }

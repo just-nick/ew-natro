@@ -16,6 +16,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = () => {
                 </ul>
 
                 <ul className="links">
+                    <li><Link to="/questionnaire">Questionnaire</Link></li>
                     <li><Link to="/privacy">Privacy</Link></li>
                     <li><Link to="/faqs">FAQs</Link></li>
                 </ul>

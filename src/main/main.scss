@@ -24,6 +24,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     min-width: 980px;
+    padding-top: 8.42rem;
 }
 
 @keyframes fade-in {
@@ -102,13 +103,19 @@ button {
 .container {
     margin: auto;
     padding: 0 space('gutter');
-    max-width: 980px;
+    max-width: 980px + (2*16px);
     min-height: 100%;
 }
 
 header {
-    $nav-side-pad: 1.4rem;
-    padding: 2rem 0;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    $nav-side-pad: 1.56rem;
+    background: color('nav', 'inverse');
+    padding: 3rem 0;
 
     .container {
         display: flex;
@@ -118,18 +125,6 @@ header {
 
         @include breakpoint('lg') {
             flex-direction: row;
-        }
-    }
-
-    button {
-        height: 40px;
-        width: 40px;
-        background: hotpink;
-        border: none;
-        text-indent: -99999999px;
-
-        @include breakpoint('lg') {
-            display: none;
         }
     }
 
@@ -156,6 +151,8 @@ header {
             color: color('content');
             text-decoration: none;
             padding: 0.5rem $nav-side-pad;
+            background: rgba(color('nav'), 0);
+            transition: color 500ms, background-color 500ms;
 
             &.home {
                 margin: 5px 1.8rem 0 auto;
@@ -163,8 +160,10 @@ header {
                 overflow: hidden;
                 background: url('../assets/home.svg') no-repeat center;
                 background-size: contain;
-                width: 26px;
-                height: 26px;
+                width: 30px;
+                height: 30px;
+                transition: background-image 500ms;
+                // align-self: flex-end;
 
                 &:hover {
                     background: url('../assets/home-filled.svg') no-repeat center transparent;
@@ -174,8 +173,9 @@ header {
 
             &.active,
             &:hover {
-                background: color('content');
-                color: color('content', 'inverse');
+                background: color('nav');
+                color: color('nav', 'inverse');
+                text-decoration: none;
             }
 
             &.home.active {
@@ -189,29 +189,33 @@ header {
 
             &:hover {
                 .sub-nav {
-                    display: block;
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }
     }
 
     .sub-nav {
-        background: color('content');
-        display: none;
+        background: color('nav');
+        display: block;
+        visibility: hidden;
         position: absolute;
         z-index: 1;
         top: 100%;
         left: 0;
-        padding: space('gutter') 3.8rem space('gutter') $nav-side-pad;
+        padding: space('gutter') 2.75rem space('gutter') $nav-side-pad;
+        opacity: 0;
+        transition: opacity 500ms, visibility 500ms;
 
         a {
             font-family: Arial, Helvetica, sans-serif;
             display: block;
-            font-size: 0.8rem;
+            font-size: font-size('small');
             font-weight: normal;
-            color: color('content', 'inverse');
+            color: color('nav', 'inverse');
             text-transform: none;
-            padding: 0 0 5px;
+            padding: 5px 0;
             white-space: nowrap;
         }
     }

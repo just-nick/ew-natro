@@ -3,12 +3,25 @@
 @import '../style/spacing';
 @import '../style/components';
 
+.service-list {
+    .block-item {
+        .feature {
+            padding-top: 6.5rem;
+            padding-bottom: 6.5rem;
+        }
+
+        h2 {
+            @extend %moon3;
+        }
+    }
+}
+
 .prices {
     margin: 0;
     background: color('secondary');
     color: color('secondary', 'inverse');
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 
     .container {
         display: flex;
@@ -18,7 +31,7 @@
             flex-direction: column;
             flex: 1 0 0;
             border-right: 3px solid #FFF;
-            padding: 1rem;
+            padding: 1rem 1rem 0;
 
             &:first-child {
                 border-left: 3px solid #FFF;
@@ -35,12 +48,14 @@
     h3 {
         @extend %h1;
         color: color('primary');
-        margin: space('heading-break') 0 0 0;
+        margin: 0;
         text-decoration: none;
     }
 
     p {
         flex: 1 0 0;
+        font-size: font-size('small');
+        line-height: 1.85;
     }
 
     .price {
@@ -57,8 +72,8 @@
 
     button {
         @extend %button;
-        font-size: .9rem;
-        padding: 1rem 2rem;
+        font-size: font-size('small');
+        padding: 1rem 3rem;
         font-weight: bold;
         display: block;
         margin: 2rem auto 0;
@@ -70,7 +85,7 @@
 .service-quote {
     position: relative;
     display: flex;
-    min-height: 30rem;
+    min-height: 35rem;
     background: color('primary');
     color: color('primary', 'inverse');
     align-items: center;
@@ -81,18 +96,22 @@
         background: color('content') no-repeat center;
         background-size: cover;
         flex: 1 0 0;
-        padding: 4rem;
+        padding: 5rem;
         align-self: stretch;
     }
 
     div {
-        padding: 4rem;
+        padding: 5rem;
         flex: 1 0 0;
         
         p {
-            font-size: 1.7rem;
+            font-size: 1.875rem;
             font-weight: bold;
             margin: 0 0 space('heading-break');
+        }
+
+        span {
+            font-weight: bold;
         }
     }
 }

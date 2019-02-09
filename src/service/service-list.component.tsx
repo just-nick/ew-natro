@@ -19,7 +19,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteProps>
         }
 
         return <div>
-            <div className="container">
+            <div className="service-list container">
 
                 <PageHeroComponent heading={props.serviceLanding.title[0].text} image={props.serviceLanding.header_image.url} />
 

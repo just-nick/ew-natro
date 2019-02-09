@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Provider } from 'react-redux';
-import { NavLink, Route, Switch, Router } from "react-router-dom";
+import { NavLink, Route, Router } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { reDoMiddleware } from 'redux-re-do';
 import { AboutComponent } from "../about/about.component";
@@ -12,7 +12,7 @@ import { HomeComponent } from "../home/home.component";
 import { NewsListComponent } from "../news/news-list.component";
 import { NewsComponent } from "../news/news.component";
 import { ServiceListComponent } from "../service/service-list.component";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { ContactComponent } from "../contact/contact.component";
 import { HealthProgramListComponent } from "../health-program/health-program-list.component";
 import { HealthProgramComponent } from "../health-program/health-program.component";
@@ -37,7 +37,7 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
         super(props);
         this.history = createBrowserHistory();
         this.history.listen(() => {
-            window.scrollTo(0,0);
+            window.scroll({top: 0});
         });
     }
 
@@ -92,10 +92,10 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                         </header>
 
                         <main>
-                            <Route render={({location}) => (
+                            {/* <Route render={({location}) => (
                                 <TransitionGroup>
-                                    <CSSTransition key={location.key} timeout={300} classNames="route">
-                                        <Switch location={location}>
+                                    <CSSTransition key={location.key} timeout={500} classNames="route">
+                                        <Switch location={location}> */}
                                             <Route path="/" exact component={HomeComponent} />
 
                                             <Route path="/about" exact component={AboutComponent} />
@@ -120,10 +120,10 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
 
                                             <Route path="/privacy" exact component={PrivacyComponent} />
                                             <Route path="/faqs" exact component={FaqsComponent} />
-                                        </Switch>
+                                        {/* </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>
-                            )} />
+                            )} /> */}
                         </main>
 
                         <FooterComponent />

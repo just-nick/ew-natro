@@ -16,7 +16,7 @@ $font-sizes: (
         'mobile': 1.125
     ),
     'h3': (
-        'mobile': 1.1
+        'mobile': 1.125
     ),
     'emphisis': (
         'mobile': 1.0625
@@ -55,7 +55,7 @@ $font-sizes: (
 %h2 {
     margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h2');
-    color: color('content');
+    color: color('content', 'light');
     border-bottom: 3px solid;
 
     &:first-child {
@@ -68,4 +68,13 @@ $font-sizes: (
     font-size: font-size('h3');
     color: inherit;
     border-bottom: none;
+}
+
+%moon3 {
+    @extend %h3;
+    font-family: $feature-font;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }

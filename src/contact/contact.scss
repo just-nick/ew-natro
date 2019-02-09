@@ -21,15 +21,8 @@
     }
 
     h2 {
-        border: none;
-        font-family: Moon, Arial, Helvetica, sans-serif;
-        font-size: 1rem;
-        color: inherit;
+        @extend %moon3;
         margin-bottom: space('content-break');
-
-        &:first-child {
-            margin-top: 0;
-        }
     }
 
 }

@@ -5,8 +5,9 @@
 .about-badges {
     margin: space('section-break') 0 0;
     background: color('secondary');
+    color: color('secondary', 'inverse');
     font-family: $feature-font;
-    font-size: 0.8rem;
+    font-size: font-size('small');
     text-align: center;
 
     .container {
@@ -27,6 +28,6 @@
     .logo {
         padding: 0 0 21%;
         background: url('../assets/ribbon.svg') no-repeat center;
-        background-size: 60%;
+        background-size: 65%;
     }
 }

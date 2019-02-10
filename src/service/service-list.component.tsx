@@ -1,5 +1,5 @@
 import React from "react";
-import { DataState } from "../common/reducer";
+import { DataState, OpenOverlay } from "../common/reducer";
 import { connect, DispatchProp } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
 import { writeText } from "../common/content";
@@ -18,7 +18,7 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
     }
 
     updateHeight () {
-        console.log('Update');
+        console.log('Update', this.props);
         const location = this.props.location;
         if (location && location.hash && location.hash.length > 1) {
             const target = document.getElementById(location.hash.replace('#', ''));
@@ -30,8 +30,13 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
         }
     }
 
+    public enquire(service: string, url: string) {
+        return () => {
+            this.props.dispatch(OpenOverlay(service, url));
+        }
+    }
+
     render() {
-        console.log('Render');
         const props = this.props;
 
         if (props.services && props.serviceLanding) {
@@ -45,7 +50,7 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
                             <div className="block-item" key={i} id={service.id}>
                                 <div className="feature">
                                     <img src={service.image.url} alt="" />
-                                    <button>Enquire Now</button>
+                                    <button onClick={this.enquire(service.title, service.image.url)}>Enquire Now</button>
                                 </div>
                                 <div className="content">
                                     <h2>{service.title}</h2>
@@ -71,7 +76,7 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
                         ))}
                     </div>
 
-                    <button>Book an appointment</button>
+                    <button onClick={this.enquire('Book an appointment', '')}>Book an appointment</button>
                 </div>
 
                 <div className="container">
@@ -90,4 +95,4 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
     }
 }
 
-export const ServiceListComponent = connect<DataState, RouteProps, DataState>((state) => state)(Component);
+export const ServiceListComponent = connect<DataState, RouteProps, DataState, DataState>((state) => state)(Component);

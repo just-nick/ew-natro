@@ -13,6 +13,8 @@ $spaces: (
     )
 );
 
+$block-gutter: 2rem;
+
 @function space($name, $variant: 'mobile') {
     @return map-get(map-get($spaces, $name), $variant)
 };

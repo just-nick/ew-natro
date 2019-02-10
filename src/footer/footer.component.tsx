@@ -25,4 +25,4 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = () => {
     );
 }
 
-export const FooterComponent = connect<DataState, {}, DataState>((state) => state)(Component);
+export const FooterComponent = connect<DataState, {}, {}, DataState>((state) => state)(Component);

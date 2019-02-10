@@ -29,4 +29,4 @@ const Component: React.StatelessComponent<RouterProps & DispatchProp & DataState
     return <LoaderComponent />
 }
 
-export const HealthProgramListComponent = connect<DataState, RouteProps, DataState>((state) => state)(Component);
+export const HealthProgramListComponent = connect<DataState, RouteProps, DataState, DataState>((state) => state)(Component);

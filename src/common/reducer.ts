@@ -15,6 +15,11 @@ import { Contact } from "../contact/contact";
 import { Event } from '../event/event';
 
 export interface DataState {
+    enquire: {
+        active: boolean,
+        category?: string,
+        icon?: string
+    }
     services?: Service[];
     serviceLanding?: ServiceLanding;
     home?: Home;
@@ -29,12 +34,18 @@ export interface DataState {
     privacy?: Privacy;
 }
 
-export interface DataAction extends DataState {
+export interface DataAction extends Partial<DataState> {
     type: string;
 }
 
+export interface EnquireAction {
+    type: 'EnquireAction';
+    category?: string;
+    icon?: string;
+}
+
 export const DataLoaded = 'DataLoadedAction';
-export const DataReducer: Reducer<DataState, AnyAction> = (state = {}, action) => {
+export const DataReducer: Reducer<DataState, AnyAction> = (state = {enquire: {active: false}}, action) => {
     switch(action.type) {
         case DataLoaded:
             return {
@@ -42,8 +53,32 @@ export const DataReducer: Reducer<DataState, AnyAction> = (state = {}, action) =
                 ...action
             }
 
+        case 'EnquireAction':
+                return {
+                    ...state,
+                    enquire: {
+                        active: action.category !== undefined,
+                        category: action.category,
+                        icon: action.icon
+                    }
+                }
+
         default:
             return state;
+    }
+};
+
+export const CloseOverlay: ActionCreator<EnquireAction> = () => {
+    return {
+        type: 'EnquireAction'
+    }
+};
+
+export const OpenOverlay: ActionCreator<EnquireAction> = (category: string, icon: string) => {
+    return {
+        type: 'EnquireAction',
+        category,
+        icon
     }
 };
 

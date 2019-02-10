@@ -54,11 +54,13 @@
     a {
         @extend %button;
         background: $hero-button-color;
+        border-color: #fff;
 
         &:focus,
         &:active,
         &:hover {
             background: $hero-button-hover;
+            border-color: #fff;
         }
     }
 

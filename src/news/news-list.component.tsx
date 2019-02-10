@@ -31,4 +31,4 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = (props) =>
     return <LoaderComponent />
 }
 
-export const NewsListComponent = connect<DataState, {}, DataState>((state) => state)(Component);
+export const NewsListComponent = connect<DataState, {}, {}, DataState>((state) => state)(Component);

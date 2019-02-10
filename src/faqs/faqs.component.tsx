@@ -15,7 +15,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp> = (props) =>
     return <LoaderComponent />
 }
 
-export const FaqsComponent = connect<DataState, {}, DataState>((state) => state)(Component);
+export const FaqsComponent = connect<DataState, {}, {}, DataState>((state) => state)(Component);
 
 export interface Faqs extends PrismicData {
     title: TextContent[];

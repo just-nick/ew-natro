@@ -7,6 +7,7 @@ import { DataState } from "../common/reducer";
 import { SharePanelComponent } from "../share-panel/share-panel.component";
 
 const Component: React.StatelessComponent<DataState & DispatchProp & RouteComponentProps<any>> = (props) => {
+    console.log('News town', props);
     if (props.news) {
         for(const news of props.news) {
             if (news.id === props.match.params.id) {
@@ -32,4 +33,4 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
     return <LoaderComponent />
 }
 
-export const NewsComponent = connect<DataState, RouteComponentProps, DataState>((state) => state)(Component);
+export const NewsComponent = connect<DataState, RouteComponentProps, DataState, DataState>((state) => state)(Component);

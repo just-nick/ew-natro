@@ -15,13 +15,18 @@ $blog-higlight-size: 100%;
 .blog-highlight-component {
     flex: 0 0 $blog-higlight-size-desktop;
     padding-bottom: $blog-higlight-height-desktop;
-    margin-bottom: 3.5%;
+    margin-top: 3rem;
     position: relative;
     display: block;
     background: color('primary', 'inverse') center center;
     background-size: contain;
     background-size: cover;
     text-decoration: none;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+        margin-top: 0;
+    }
 
     &::before {
         position: absolute;
@@ -83,7 +88,7 @@ $blog-higlight-size: 100%;
 
         span {
             @extend %h1;
-            transition: opacity 300ms, display 300ms;
+            transition: opacity 500ms, display 500ms;
             display: block;
             opacity: 0;
             margin: 0;

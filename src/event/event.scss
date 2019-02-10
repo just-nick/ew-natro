@@ -1,10 +1,18 @@
 @import '../style/colour';
+@import '../style/spacing';
 
 .block-item.event-item {
+    .feature {
+        min-height: 15.5rem;
+    }
+
     .content {
+        position: relative;
+
         a {
-            margin-top: -2rem;
-            float: right;
+            position: absolute;
+            bottom: $block-gutter;
+            right: $block-gutter;
             background: color('content');
             color: color('content', 'inverse');
             border-color: color('content');

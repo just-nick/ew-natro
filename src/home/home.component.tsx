@@ -1,7 +1,7 @@
 import React from "react";
 import { HeroComponent } from "../hero/hero.component";
 import { BlogHighlightListComponent } from "../blog/blog-highlight-list.component";
-import { connect, DispatchProp, MapStateToProps } from "react-redux";
+import { connect, DispatchProp } from "react-redux";
 import { LoaderComponent } from "../loader/loader.component";
 import { Link } from "react-router-dom";
 import { DataState } from "../common/reducer";
@@ -74,9 +74,4 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
     return <LoaderComponent />;
 }
 
-const mapStateToProps: MapStateToProps<DataState, {}, DataState> = (state: DataState): DataState => {
-    return {
-        ...state
-    };
-}
-export const HomeComponent = connect(mapStateToProps)(HomeComponentBase);
+export const HomeComponent = connect<DataState, {}, {}, DataState>((state) => state)(HomeComponentBase);

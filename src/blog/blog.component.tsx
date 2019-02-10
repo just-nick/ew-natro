@@ -64,4 +64,4 @@ function getBlog(id: string, blogs: Blog[]): Blog | null {
     return null;
 }
 
-export const BlogComponent = connect<DataState, RouteComponentProps, DataState>((state) => state)(Component);
+export const BlogComponent = connect<DataState, RouteComponentProps, DataState, DataState>((state) => state)(Component);

@@ -48,4 +48,4 @@ function toTitleCase(str: string): string {
     );
 }
 
-export const BlogListComponent = connect<DataState, RouteComponentProps, DataState>((state) => state)(Component);
+export const BlogListComponent = connect<DataState, RouteComponentProps, DataState, DataState>((state) => state)(Component);

@@ -57,6 +57,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: 60%;
+            transition: background-color 500ms, background-image 500ms, color 500ms, border-color 500ms;
 
             &:hover {
                 background-color: #fff;

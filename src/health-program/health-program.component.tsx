@@ -1,7 +1,7 @@
 import React from "react";
 import { LoaderComponent } from "../loader/loader.component";
 import { connect, DispatchProp } from "react-redux";
-import { DataState } from "../common/reducer";
+import { DataState, OpenOverlay } from "../common/reducer";
 import { RouteComponentProps, Redirect } from "react-router";
 
 import './health-program.scss';
@@ -18,7 +18,7 @@ const Component: React.StatelessComponent<RouteComponentProps<any> & DispatchPro
                 <div className="container health-program">
                     <PageHeroComponent image={program.image.url} heading={program.title} />
                     {writeText(program.content)}
-                    <button>Make an Enquiry</button>
+                    <button onClick={enquire(program.title, program.icon.url)}>Make an Enquiry</button>
                 </div>
             );
         }
@@ -27,9 +27,17 @@ const Component: React.StatelessComponent<RouteComponentProps<any> & DispatchPro
     }
 
     return <LoaderComponent />
+
+    
+
+    function enquire(service: string, url: string) {
+        return () => {
+            props.dispatch(OpenOverlay(service, url));
+        }
+    }
 }
 
-export const HealthProgramComponent = connect<DataState, RouteComponentProps, DataState>((state) => state)(Component);
+export const HealthProgramComponent = connect<DataState, RouteComponentProps, DataState, DataState>((state) => state)(Component);
 
 function getProgram(id: string, programs: HealthProgram[]): HealthProgram | null {
     for (const program of programs) {

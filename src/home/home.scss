@@ -161,5 +161,10 @@
         padding: 1rem .5rem;
         margin: 0 0 0 1%;
         border-radius: 0;
+
+        &:hover {
+            border-color: color('content', 'inverse');
+            background: color('secondary', 'shadow');
+        }
     }
 }

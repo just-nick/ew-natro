@@ -277,7 +277,7 @@ header {
         background: none;
         border: none;
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: normal;
 
         &:hover {
@@ -334,9 +334,9 @@ header {
         input,
         textarea {
             border: 1px solid #d2d3d5;
-            padding: .5rem;
+            padding: .6rem;
             background: color('secondary');
-            margin-bottom: 1rem;
+            margin-bottom: 1.6rem;
             display: block;
             width: 100%;
             resize: none;
@@ -348,6 +348,7 @@ header {
 
         button {
             margin: 0;
+            padding: 10px 15px;
             background: color('content');
             border-color: color('content');
             color: color('content', 'inverse');

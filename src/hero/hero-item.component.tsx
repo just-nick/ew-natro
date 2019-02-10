@@ -4,7 +4,10 @@ import { Hero } from "./hero";
 
 type Props = {
     hero: Hero;
-    position: 'current' | 'next' | 'previous' | undefined
+    position: 'current' | 'initial' | 'previous' | undefined,
+    index: number,
+    count: number,
+    jumpTo: (i: number) => void
 }
 
 export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
@@ -22,16 +25,23 @@ export const HeroItemComponent: React.StatelessComponent<Props> = (props) => {
             <div className='container'>
                 <div className='content'>
                     <h2>{hero.title}</h2>
-                    <p>
-                        {hero.content}
-                    </p>
+                    <p>{hero.content}</p>
                     {hero.link.slice(0,1) === '/' ? (
                         <Link to={hero.link}>Find out more</Link>
                     ) : (
                         <a href={hero.link}>Find out more</a>
                     )}
+                    <div className="dots">{dots()}</div>
                 </div>
             </div>
         </section>
     );
+
+    function dots() {
+        const output = [];
+        for(let i = 0; i < props.count; i++) {
+            output.push(<span onClick={() => props.jumpTo(i)} key={i} className={i === props.index ? 'current' : ''}></span>)
+        }
+        return output;
+    }
 }

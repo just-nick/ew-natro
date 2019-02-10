@@ -14,18 +14,20 @@ type State = {
 
 export class HeroComponent extends React.Component<Props, State> {
     private rotationTimer: NodeJS.Timeout | null = null;
+    private lastHero = 0;
+    private initial = true;
 
     public state = {
         currentHero: 0
     }
 
     public componentDidMount() {
-        this.rotationTimer = setInterval(this.moveBy(1), 10000);
+        this.setTimer();
     }
 
     public componentWillUnmount() {
         if (this.rotationTimer) {
-            clearInterval(this.rotationTimer);
+            clearTimeout(this.rotationTimer);
         }
     }
 
@@ -35,8 +37,11 @@ export class HeroComponent extends React.Component<Props, State> {
                 {this.props.heros.map((heroItem, i) =>
                     <HeroItemComponent
                         key={i}
+                        index={i}
+                        count={this.props.heros.length}
                         hero={heroItem}
-                        position={this.getPosition(i, this.state.currentHero, this.props.heros.length)}
+                        jumpTo={this.jumpTo}
+                        position={this.getPosition(i, this.state.currentHero, this.lastHero, this.initial)}
                     />)}
             </div>
         );
@@ -45,25 +50,22 @@ export class HeroComponent extends React.Component<Props, State> {
     private getPosition(
         index: number,
         current: number,
-        total: number): 'current' | 'next' | 'previous' | undefined {
+        lastHero: number,
+        initial: boolean): 'current' | 'initial' | 'previous' | undefined {
+
+        if (initial) {
+            if (index === current) {
+                return 'initial';
+            }
+
+            return;
+        }
 
         if (index === current) {
             return 'current';
         }
 
-        if (index === current - 1) {
-            return 'previous';
-        }
-
-        if (index === current + 1) {
-            return 'next';
-        }
-
-        if (current === total - 1 && index === 0) {
-            return 'next';
-        }
-
-        if (current === 0 && index === total - 1) {
+        if (index === lastHero) {
             return 'previous'
         }
 
@@ -80,10 +82,24 @@ export class HeroComponent extends React.Component<Props, State> {
                 currentHero = this.props.heros.length - 1;
             }
 
-            this.setState({
-                ...this.state,
-                currentHero
-            });
+            this.jumpTo(currentHero);
         };
+    }
+
+    private setTimer() {
+        if (this.rotationTimer) {
+            clearTimeout(this.rotationTimer);
+        }
+        this.rotationTimer = setTimeout(this.moveBy(1), 10000);
+    }
+
+    public jumpTo = (currentHero: number) => {
+        this.initial = false;
+        this.lastHero = this.state.currentHero;
+        this.setTimer();
+        this.setState({
+            ...this.state,
+            currentHero
+        });
     }
 }

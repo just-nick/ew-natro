@@ -1,3 +1,4 @@
+import { createBrowserHistory, History } from "history";
 import * as React from "react";
 import { Provider } from 'react-redux';
 import { NavLink, Route, Router } from "react-router-dom";
@@ -7,37 +8,36 @@ import { AboutComponent } from "../about/about.component";
 import { BlogListComponent } from "../blog/blog-list.component";
 import { BlogComponent } from "../blog/blog.component";
 import { DataReducer, GetData } from "../common/reducer";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { ContactComponent } from "../contact/contact.component";
+import { EventListComponent } from "../event/event-list.component";
+import { EventComponent } from "../event/event.component";
+import { FaqsComponent } from "../faqs/faqs.component";
 import { FooterComponent } from "../footer/footer.component";
+import { HealthProgramListComponent } from "../health-program/health-program-list.component";
+import { HealthProgramComponent } from "../health-program/health-program.component";
 import { HomeComponent } from "../home/home.component";
 import { NewsListComponent } from "../news/news-list.component";
 import { NewsComponent } from "../news/news.component";
-import { ServiceListComponent } from "../service/service-list.component";
-// import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { ContactComponent } from "../contact/contact.component";
-import { HealthProgramListComponent } from "../health-program/health-program-list.component";
-import { HealthProgramComponent } from "../health-program/health-program.component";
-import { EventListComponent } from "../event/event-list.component";
-import { EventComponent } from "../event/event.component";
-
-import './main.scss';
-import { createBrowserHistory, History } from "history";
-import { FaqsComponent } from "../faqs/faqs.component";
 import { PrivacyComponent } from "../privacy/privacy.component";
+import { ServiceListComponent } from "../service/service-list.component";
+import './main.scss';
 
 const store = createStore(DataReducer, applyMiddleware(reDoMiddleware));
 
-export class MainComponent extends React.Component<{}, {showNav: boolean}> {
+export class MainComponent extends React.Component<{}, { showNav: boolean }> {
     private history: History;
 
     public state = {
         showNav: false
     };
 
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
         this.history = createBrowserHistory();
         this.history.listen(() => {
-            window.scroll({top: 0});
+            window.scroll({ top: 0 });
+            console.log('Route changed');
         });
     }
 
@@ -96,31 +96,31 @@ export class MainComponent extends React.Component<{}, {showNav: boolean}> {
                                 <TransitionGroup>
                                     <CSSTransition key={location.key} timeout={500} classNames="route">
                                         <Switch location={location}> */}
-                                            <Route path="/" exact component={HomeComponent} />
+                            <Route path="/" exact component={HomeComponent} />
 
-                                            <Route path="/about" exact component={AboutComponent} />
+                            <Route path="/about" exact component={AboutComponent} />
 
-                                            <Route path="/services" exact component={ServiceListComponent} />
-                                            <Route path="/services/health-programs" exact component={HealthProgramListComponent} />
-                                            <Route path="/services/health-programs/:id" exact component={HealthProgramComponent} />
+                            <Route path="/services" exact component={ServiceListComponent} />
+                            <Route path="/services/health-programs" exact component={HealthProgramListComponent} />
+                            <Route path="/services/health-programs/:id" exact component={HealthProgramComponent} />
 
-                                            <Route path="/news" exact component={NewsListComponent} />
-                                            <Route path="/news/events" exact component={EventListComponent} />
-                                            <Route path="/news/:id" exact component={NewsComponent} />
-                                            <Route path="/news/events/:id" exact component={EventComponent} />
+                            <Route path="/news" exact component={NewsListComponent} />
+                            <Route path="/news/events" exact component={EventListComponent} />
+                            <Route path="/news/:id" exact component={NewsComponent} />
+                            <Route path="/news/events/:id" exact component={EventComponent} />
 
-                                            <Route path="/blog" exact component={BlogListComponent} />
-                                            <Route path="/blog/lifestyle" exact component={BlogListComponent} />
-                                            <Route path="/blog/food" exact component={BlogListComponent} />
-                                            <Route path="/blog/people" exact component={BlogListComponent} />
-                                            <Route path="/blog/products" exact component={BlogListComponent} />
-                                            <Route path="/blog/:id" exact component={BlogComponent} />
-                                            
-                                            <Route path="/contact" exact component={ContactComponent} />
+                            <Route path="/blog" exact component={BlogListComponent} />
+                            <Route path="/blog/lifestyle" exact component={BlogListComponent} />
+                            <Route path="/blog/food" exact component={BlogListComponent} />
+                            <Route path="/blog/people" exact component={BlogListComponent} />
+                            <Route path="/blog/products" exact component={BlogListComponent} />
+                            <Route path="/blog/:id" exact component={BlogComponent} />
 
-                                            <Route path="/privacy" exact component={PrivacyComponent} />
-                                            <Route path="/faqs" exact component={FaqsComponent} />
-                                        {/* </Switch>
+                            <Route path="/contact" exact component={ContactComponent} />
+
+                            <Route path="/privacy" exact component={PrivacyComponent} />
+                            <Route path="/faqs" exact component={FaqsComponent} />
+                            {/* </Switch>
                                     </CSSTransition>
                                 </TransitionGroup>
                             )} /> */}

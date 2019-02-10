@@ -2,22 +2,41 @@
 @import '../style/spacing';
 @import '../style/colour';
 
+.health-program {
+    button {
+        padding: .625rem;
+    }
+}
+
 .health-program-highlight {
     position: relative;
     display: flex;
-    min-height: 30rem;
+    min-height: 31rem;
     background: color('primary');
     color: color('primary', 'inverse');
     align-items: center;
     margin-bottom: space('section-break');
 
     .image {
+        position: relative;
         display: block;
         background: color('content') no-repeat center;
         background-size: cover;
         flex: 1 0 0;
         padding: 4rem;
         align-self: stretch;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
+            opacity: 0;
+            transition: opacity 500ms;
+            content: '';
+        }
     }
 
     h2 {
@@ -26,7 +45,6 @@
         padding: 4rem;
         margin: 0;
         flex: 1 0 0;
-        line-height: 1.3;
     }
 
     &::after {
@@ -46,5 +64,16 @@
         line-height: 60px;
         border-radius: 50%;
         border: 2px solid #fff;
+        transition: background-color 500ms;
+    }
+
+    &:hover {
+        &::after {
+            background-color: mix(#fff, color('primary'), 20%);
+        }
+
+        .image::after {
+            opacity: .2;
+        }
     }
 }

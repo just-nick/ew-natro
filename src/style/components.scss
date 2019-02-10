@@ -13,12 +13,14 @@
     font-size: 0.9rem;
     margin-top: space('heading-break');
     background: rgba(0,0,0,0);
-    transition: background-color 500ms;
+    transition: background-color 500ms, color 500ms, border-color 500ms;
 
     &:hover {
         border-color: inherit;
         outline: none;
-        background: color('secondary', 'shadow');
+        background: color('content');
+        border-color: color('content');
+        color: color('content', 'inverse');
         text-decoration: none;
     }
 

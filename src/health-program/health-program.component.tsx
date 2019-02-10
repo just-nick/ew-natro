@@ -15,7 +15,7 @@ const Component: React.StatelessComponent<RouteComponentProps<any> & DispatchPro
 
         if (program) {
             return (
-                <div className="container">
+                <div className="container health-program">
                     <PageHeroComponent image={program.image.url} heading={program.title} />
                     {writeText(program.content)}
                     <button>Make an Enquiry</button>

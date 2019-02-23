@@ -13,14 +13,6 @@
             position: absolute;
             bottom: $block-gutter;
             right: $block-gutter;
-            background: color('content');
-            color: color('content', 'inverse');
-            border-color: color('content');
-
-            &:hover {
-                background: color('content', 'dark');
-                border-color: color('content', 'dark');
-            }
         }
 
         &::after {

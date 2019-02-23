@@ -21,7 +21,7 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
 
     public componentDidUpdate() {
         const category = this.props.enquire.category;
-        if (category && this.state.subject !== category) {
+        if (category && this.state.subject === '') {
             this.setState({
                 ...this.state,
                 subject: category,
@@ -33,6 +33,12 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
 
     public closeOverlay = () => {
         this.props.dispatch(CloseOverlay());
+        this.setState({
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+        });
     }
 
     public sendEnquiry = () => {
@@ -45,14 +51,20 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
 
         if (!nameError && !emailError) {
             alert(`Will send: ${this.state.name} ${this.state.email} ${this.state.subject} ${this.state.message}`)
-            this.props.dispatch(CloseOverlay())
+            this.props.dispatch(CloseOverlay());
+            this.setState({
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            });
+        } else {
+            this.setState({
+                ...this.state,
+                emailError,
+                nameError
+            });
         }
-
-        this.setState({
-            ...this.state,
-            emailError,
-            nameError
-        });
     }
 
     public render() {
@@ -77,7 +89,7 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
                             {this.state.emailError ? <p className="error">You must provide a valid email</p> : null}
 
                             <label htmlFor="subject">Subject</label>
-                            <input id="subject" value={this.state.subject} readOnly />
+                            <input id="subject" value={this.state.subject} onChange={(v) => this.setState({ ...this.state, subject: v.target.value })} />
 
                             <label htmlFor="message">Message</label>
                             <textarea id="message" value={this.state.message} onChange={(v) => this.setState({ ...this.state, message: v.target.value })} />

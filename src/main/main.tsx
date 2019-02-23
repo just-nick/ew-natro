@@ -1,7 +1,7 @@
 import { createBrowserHistory, History } from "history";
 import * as React from "react";
 import { Provider } from 'react-redux';
-import { NavLink, Route, Router, Switch } from "react-router-dom";
+import { NavLink, Route, Router, Switch, Link } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { reDoMiddleware } from 'redux-re-do';
 import { AboutComponent } from "../about/about.component";
@@ -109,7 +109,7 @@ export class MainComponent extends React.Component<{}, {}> {
                                     <NavLink className="home" exact={true} to="/">Home</NavLink>
                                 </nav>
 
-                                <div className='logo'>Emma Wiseman</div>
+                                <Link to="/" className='logo'>Emma Wiseman</Link>
                             </div>
                         </header>
 

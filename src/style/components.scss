@@ -1,10 +1,57 @@
 @import './spacing';
 
-%button {
+@mixin button-color-default {
     color: inherit;
+    background: rgba(0,0,0,0);
+
+    &:hover {
+        background: color('content');
+        border-color: color('content');
+        color: color('content', 'inverse');
+    }
+}
+
+@mixin button-color-clear-on-primary {
+    color: color('primary', 'inverse');
+    border-color: color('primary', 'inverse');
+    background: color('primary');
+
+    &:hover {
+        color: color('primary', 'inverse');
+        border-color: color('primary', 'inverse');
+        background: $hero-button-color;
+    }
+}
+
+@mixin button-color-dark-on-dark {
+    color: color('content', 'inverse');
+    border-color: color('content', 'inverse');
+    background: color('content', 'light');
+
+    &:hover {
+        color: color('content', 'inverse');
+        border-color: color('content', 'inverse');
+        background: color('content');
+    }
+}
+
+@mixin button-color-dark-on-white {
+    color: color('content', 'inverse');
+    background: color('content', 'light');
+    border-color: color('content', 'light');
+
+    &:hover {
+        color: color('content', 'inverse');
+        background: color('content');
+        border-color: color('content');
+    }
+}
+
+%button {
+    @include button-color-dark-on-white;
     text-decoration: none;
-    background: none;
-    border: 2px solid;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 3px;
     padding: .5rem;
     justify-self: flex-end;
@@ -12,14 +59,9 @@
     font-weight: bold;
     font-size: 0.9rem;
     margin-top: space('heading-break');
-    background: rgba(0,0,0,0);
     transition: background-color 500ms, color 500ms, border-color 500ms;
 
     &:hover {
-        border-color: inherit;
-        background: color('content');
-        border-color: color('content');
-        color: color('content', 'inverse');
         text-decoration: none;
     }
 
@@ -27,4 +69,20 @@
     &:active {
         outline: none;
     }
+}
+
+%enquire-button {
+    @include button-color-dark-on-dark;
+    @extend %button;
+    font-size: font-size('small');
+    padding: 1rem 3rem;
+    font-weight: bold;
+    display: block;
+}
+
+%modal-button {
+    @include button-color-dark-on-white;
+    @extend %button;
+    padding: 10px 15px;
+    border-radius: 0;
 }

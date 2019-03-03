@@ -223,6 +223,11 @@ header {
             text-transform: none;
             padding: 5px 0;
             white-space: nowrap;
+            
+            &.active {
+                color: rgba(color('nav', 'inverse'), 0);
+                background: none;
+            }
 
             &:hover {
                 color: color('nav', 'inverse') !important;

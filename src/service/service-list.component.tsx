@@ -7,17 +7,18 @@ import { PageHeroComponent } from "../page-hero/page-hero.component";
 
 import "./service-list.scss";
 import { RouteProps } from "react-router";
+import { QuotesComponent } from "./quotes.component";
 
 class Component extends React.Component<DataState & DispatchProp & RouteProps, {}> {
-    componentDidMount () {
+    componentDidMount() {
         this.updateHeight();
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
         this.updateHeight();
     }
 
-    updateHeight () {
+    updateHeight() {
         const location = this.props.location;
         if (location && location.hash && location.hash.length > 1) {
             const target = document.getElementById(location.hash.replace('#', ''));
@@ -78,13 +79,7 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
                 </div>
 
                 <div className="container">
-                    <div className="service-quote">
-                        <div>
-                            <p>{props.serviceLanding.quote_text}</p>
-                            <span>{props.serviceLanding.quote_by}</span>
-                        </div>
-                        <span className="image" style={{ backgroundImage: `url('${props.serviceLanding.quote_image.url}')` }}></span>
-                    </div>
+                    <QuotesComponent quotes={props.serviceLanding.quotes} />
                 </div>
             </div>
         }

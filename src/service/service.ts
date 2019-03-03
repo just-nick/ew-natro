@@ -15,7 +15,11 @@ export interface ServiceLanding extends PrismicData {
         price: number,
         disclaimer: string
     }>;
-    quote_image: ImageContent;
-    quote_text: string;
-    quote_by: string;
+    quotes: ServiceLandingQuote[];
+}
+
+export interface ServiceLandingQuote {
+    image: ImageContent;
+    text: string;
+    by: string;
 }

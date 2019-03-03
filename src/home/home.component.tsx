@@ -50,15 +50,15 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
                         <form action="https://formspree.io/emma@emmawiseman.com.au"
                               method="POST"
                               encType="multipart/form-data">
-                            <input type="text" name="first_name" placeholder="First Name" />
-                            <input type="text" name="first_name" placeholder="Second Name" />
-                            <input type="email" name="_replyto" placeholder="Email Address" />
+                            <input required type="text" name="first_name" placeholder="First Name" />
+                            <input type="text" name="second_name" placeholder="Second Name" />
+                            <input required type="email" name="_replyto" placeholder="Email Address" />
 
                             <input type="hidden" name="_subject" value="Contact form submitted" />
-                            <input type="hidden" name="_next" value={window.location.href} />
 
                             <button type="submit" value="Send">Sign Up</button>
 
+                            <input type="hidden" name="_next" value={window.location.href} />
                             <input type="text" name="_gotcha" style={{ display: 'none' }} />
                         </form>
                     </div>

@@ -42,35 +42,7 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
     }
 
     public preventBubbles = (e: SyntheticEvent) => {
-        console.log(e);
-        e.preventDefault();
         e.stopPropagation();
-    }
-
-    public sendEnquiry = () => {
-        const emailRegexp = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-        const emailMatches = this.state.email.match(emailRegexp);
-        const nameError: boolean = this.state.name.length === 0;
-        const emailError: boolean = (emailMatches === null || emailMatches.length === 0);
-
-        console.log('Errors', nameError, emailError)
-
-        if (!nameError && !emailError) {
-            alert(`Will send: ${this.state.name} ${this.state.email} ${this.state.subject} ${this.state.message}`)
-            this.props.dispatch(CloseOverlay());
-            this.setState({
-                name: '',
-                email: '',
-                subject: '',
-                message: ''
-            });
-        } else {
-            this.setState({
-                ...this.state,
-                emailError,
-                nameError
-            });
-        }
     }
 
     public render() {
@@ -85,25 +57,30 @@ class Component extends React.Component<DispatchProp & DataState, EnquireState> 
                             <div className="image" style={{backgroundImage: `url('${this.props.enquire.icon}')`}}></div>
                         </div>
 
-                        <div className="content">
+                        <form className="content"
+                              action="https://formspree.io/emma@emmawiseman.com.au"
+                              method="POST"
+                              encType="multipart/form-data">
                             <label htmlFor="name">Name *</label>
-                            <input id="name" value={this.state.name} onChange={(v) => this.setState({ ...this.state, name: v.target.value })} />
-                            {this.state.nameError ? <p className="error">You must provide a name</p> : null}
+                            <input required type="text" id="name" name="name" value={this.state.name} onChange={(v) => this.setState({ ...this.state, name: v.target.value })} />
 
                             <label htmlFor="email">Email *</label>
-                            <input id="email" value={this.state.email} onChange={(v) => this.setState({ ...this.state, email: v.target.value })} />
-                            {this.state.emailError ? <p className="error">You must provide a valid email</p> : null}
+                            <input required type="email" id="email" name="_replyto" value={this.state.email} onChange={(v) => this.setState({ ...this.state, email: v.target.value })} />
 
                             <label htmlFor="subject">Subject</label>
-                            <input id="subject" value={this.state.subject} onChange={(v) => this.setState({ ...this.state, subject: v.target.value })} />
+                            <input type="text" id="subject" name="subject" value={this.state.subject} onChange={(v) => this.setState({ ...this.state, subject: v.target.value })} />
+                            <input type="hidden" name="_subject" value={"Enquiry: " + this.state.subject} />
 
                             <label htmlFor="message">Message</label>
-                            <textarea id="message" value={this.state.message} onChange={(v) => this.setState({ ...this.state, message: v.target.value })} />
+                            <textarea id="message" name="message" value={this.state.message} onChange={(v) => this.setState({ ...this.state, message: v.target.value })} />
 
-                            <button type="button" onClick={this.sendEnquiry}>Submit</button>
+                            <input type="hidden" name="_next" value={window.location.href} />
+                            <input type="text" name="_gotcha" style={{ display: 'none' }} />
+
+                            <button type="submit">Submit</button>
 
                             <p className="phone">Ph: (02) 9523 9940</p>
-                        </div>
+                        </form>
                     </div>
                 </div>
             );

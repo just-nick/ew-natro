@@ -61,7 +61,7 @@ $font-sizes: (
     position: relative;
     margin: space('section-break') 0 space('heading-break');
     font-size: font-size('h2');
-    color: color('content', 'light');
+    color: color('content');
     padding-bottom: 3px solid;
 
     &:first-child {
@@ -75,7 +75,7 @@ $font-sizes: (
         right: 0;
         top: 100%;
         height: 3px;
-        background-color: color('content', 'light');
+        background-color: color('content');
         transition: right .5s ease-in;
         transition-delay: .5s;
     }

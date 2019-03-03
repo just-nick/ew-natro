@@ -18,11 +18,9 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
     }
 
     updateHeight () {
-        console.log('Update', this.props);
         const location = this.props.location;
         if (location && location.hash && location.hash.length > 1) {
             const target = document.getElementById(location.hash.replace('#', ''));
-            console.log(target);
             if (target) {
                 const topOfElement = target.offsetTop;
                 window.scroll({ top: topOfElement });

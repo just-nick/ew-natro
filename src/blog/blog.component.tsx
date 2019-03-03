@@ -19,7 +19,6 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
                     && b.id !== blog.id
                 ))
                 .slice(0, 4);
-            console.log('similar', similar);
 
             return <section className="container">
 

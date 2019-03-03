@@ -8,7 +8,6 @@ import { SharePanelComponent } from "../share-panel/share-panel.component";
 import { PageHeroComponent } from "../page-hero/page-hero.component";
 
 const Component: React.StatelessComponent<DataState & DispatchProp & RouteComponentProps<any>> = (props) => {
-    console.log('News town', props);
     if (props.news) {
         for(const news of props.news) {
             if (news.id === props.match.params.id) {

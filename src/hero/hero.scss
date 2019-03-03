@@ -103,7 +103,7 @@
     }
 
     a {
-        @extend %button;
+        @extend %rounded-button;
         background: $hero-button-color;
         border-color: #fff;
 

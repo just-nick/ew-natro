@@ -52,7 +52,6 @@
     text-decoration: none;
     border-width: 2px;
     border-style: solid;
-    border-radius: 3px;
     padding: .5rem;
     justify-self: flex-end;
     cursor: pointer;
@@ -69,6 +68,11 @@
     &:active {
         outline: none;
     }
+}
+
+%rounded-button {
+    @extend %button;
+    border-radius: 3px;
 }
 
 %enquire-button {

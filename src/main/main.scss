@@ -261,7 +261,7 @@ header {
 
     .close {
         position: absolute;
-        padding: 10px 14px;
+        padding: 12px 20px;
         top: 0;
         right: 0;
         background: none;
@@ -282,7 +282,7 @@ header {
         display: flex;
         width: 980px;
         max-height: 100vh;
-        padding: $block-gutter;
+        padding: 3.2rem 3rem;
         background: #fff;
         overflow: hidden;
         overflow-y: auto;
@@ -290,8 +290,8 @@ header {
     }
 
     .feature {
-        width: 10rem;
-        margin-right: $block-gutter * 2;
+        width: 11rem;
+        margin-right: 3rem;
 
         h2 {
             @extend %moon3;
@@ -312,6 +312,7 @@ header {
 
         .phone {
             float: right;
+            margin: 1.5rem 0 0;
         }
 
         label {
@@ -328,7 +329,7 @@ header {
         textarea {
             font-size: font-size('small');
             border: 1px solid #d2d3d5;
-            padding: .6rem;
+            padding: .7rem;
             background: color('secondary');
             margin-bottom: 1.6rem;
             display: block;
@@ -337,7 +338,7 @@ header {
         }
 
         textarea {
-            min-height: 8rem;
+            min-height: 7rem;
         }
 
         button {

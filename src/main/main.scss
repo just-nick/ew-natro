@@ -145,6 +145,13 @@ header {
             background: rgba(color('nav'), 0);
             transition: color 500ms, background-color 500ms;
 
+            &.active,
+            &:hover {
+                background: color('nav');
+                color: color('nav', 'inverse');
+                text-decoration: none;
+            }
+
             &.home {
                 animation: appear-delay 1000ms;
                 margin: 5px 1.8rem 0 auto;
@@ -163,15 +170,12 @@ header {
                 }
             }
 
-            &.active,
-            &:hover {
-                background: color('nav');
-                color: color('nav', 'inverse');
-                text-decoration: none;
-            }
-
             &.home.active {
                 display: none;
+            }
+
+            &.home.past-services {
+                display: block;
             }
         }
 
@@ -180,16 +184,25 @@ header {
             display: block;
 
             &:hover {
+                & > a {
+                    background: color('nav');
+                    color: color('nav', 'inverse');
+                }
+
                 .sub-nav {
                     visibility: visible;
-                    opacity: 1;
+                    background: color('nav');
+
+                    a {
+                        color: rgba(color('nav', 'inverse'), .9);
+                    }
                 }
             }
         }
     }
 
     .sub-nav {
-        background: color('nav');
+        background: rgba(color('nav'), 0);
         display: block;
         visibility: hidden;
         position: absolute;
@@ -197,22 +210,22 @@ header {
         top: 100%;
         left: 0;
         padding: space('gutter') 2.75rem space('gutter') $nav-side-pad;
-        opacity: 0;
-        transition: opacity 500ms, visibility 500ms;
+        transition: visibility 500ms, background-color 500ms;
 
         a {
+            transition: color 500ms;
             font-family: Arial, Helvetica, sans-serif;
             display: block;
             font-size: font-size('small');
             font-weight: normal;
             letter-spacing: 0.03rem;
-            color: rgba(color('nav', 'inverse'), .9);
+            color: rgba(color('nav', 'inverse'), 0);
             text-transform: none;
             padding: 5px 0;
             white-space: nowrap;
 
             &:hover {
-                color: color('nav', 'inverse');
+                color: color('nav', 'inverse') !important;
             }
         }
     }

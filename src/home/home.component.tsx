@@ -14,7 +14,7 @@ const HomeComponentBase: React.StatelessComponent<DispatchProp & DataState> = (p
             <div>
                 <HeroComponent heros={props.home.hero_banner} />
 
-                <section className='services container'>
+                <section id="home-services" className='services container'>
                     <h2>How can Emma help you?</h2>
                     <ul>
                         {props.services.map((service, i) => (

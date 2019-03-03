@@ -41,6 +41,7 @@ export class MainComponent extends React.Component<{}, {}> {
         });
         window.addEventListener('scroll', () => {
             this.headingCheck();
+            this.servicesContainerOnScreen();
         });
     }
 
@@ -52,19 +53,40 @@ export class MainComponent extends React.Component<{}, {}> {
         this.headingCheck();
     }
 
+    public servicesContainerOnScreen() {
+        const el = document.getElementById('home-services');
+
+        if (el) {
+            const homeLink = document.getElementById('home-link');
+
+            if (homeLink) {
+                const rect = el.getBoundingClientRect();
+                const elemBottom = rect.bottom;
+                const isVisible = elemBottom > 120;
+
+                if (isVisible) {
+                    homeLink.classList.remove('past-services');
+                } else {
+                    homeLink.classList.add('past-services');
+                }
+            }
+        }
+
+    }
+
     public headingCheck() {
         document.querySelectorAll('h2, h3, h4, h5, h6').forEach((el: HTMLHeading) => {
-            var rect = el.getBoundingClientRect();
-            var elemTop = rect.top;
-            var elemBottom = rect.bottom;
-            var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+            const rect = el.getBoundingClientRect();
+            const elemTop = rect.top;
+            const elemBottom = rect.bottom;
+            const isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
 
             if (isVisible) {
                 el.displayState = 'on-screen';
             } else if (el.displayState !== 'on-screen') {
                 el.displayState = 'off-screen';
             }
-            
+
             if (el.displayState === 'off-screen') {
                 el.classList.add('not-on-screen');
             } else {
@@ -106,7 +128,7 @@ export class MainComponent extends React.Component<{}, {}> {
                                         </div>
                                     </span>
                                     <NavLink to="/contact">Contact</NavLink>
-                                    <NavLink className="home" exact={true} to="/">Home</NavLink>
+                                    <NavLink id="home-link" className="home" exact={true} to="/">Home</NavLink>
                                 </nav>
 
                                 <Link to="/" className='logo'>Emma Wiseman</Link>

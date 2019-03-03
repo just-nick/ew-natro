@@ -23,7 +23,7 @@ const Component: React.StatelessComponent<DataState & DispatchProp & RouteCompon
 
             return <section className="container">
 
-                <PageHeroComponent heading={blog.title} image={blog.feature_image.url} />
+                <PageHeroComponent heading={blog.category} image={blog.feature_image.url} type="round" />
 
                 <h2>{blog.title}</h2>
 

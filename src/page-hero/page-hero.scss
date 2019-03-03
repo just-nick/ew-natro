@@ -4,6 +4,7 @@
 
 .page-hero {
     position: relative;
+    padding: 0 1rem 0 50%;
     display: flex;
     min-height: 35.188rem;
     background: color('primary');
@@ -12,8 +13,7 @@
     justify-content: center;
     margin-bottom: space('section-break');
 
-    &::before,
-    .custom {
+    .image {
         content: '';
         position: absolute;
         display: block;
@@ -21,21 +21,33 @@
         background-size: cover;
         top: 0;
         left: 0;
-        // right: 50%;
-        right: 0;
+        right: 50%;
         bottom: 0;
     }
 
-    &.custom {
-        &::before {
-            content: none;
+    &.full-image {
+        .image {
+            right: 0;
         }
     }
 
-    h1 {
-        display: none;
-        @extend %hero;
-        position: relative;
-        margin: 0 0 0 8rem;
+    &.round {
+        .title {
+            display: flex;
+            border-radius: 50%;
+            border: 3px solid;
+            width: 12rem;
+            height: 12rem;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                @extend %moon3;
+                font-size: 1.4rem;
+                margin: 0;
+                padding: 1rem;
+                text-align: center;
+            }
+        }
     }
 }

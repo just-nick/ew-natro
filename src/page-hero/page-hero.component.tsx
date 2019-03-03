@@ -2,25 +2,22 @@ import React from "react";
 
 import './page-hero.scss';
 
+type PageHeroTypes = 'full-image' | 'round';
 interface Props {
     heading: string;
-    type?: string;
-    image?: string;
+    image: string;
+    type?: PageHeroTypes;
 }
 
 export const PageHeroComponent: React.StatelessComponent<Props> = (props) => {
-    let customClass: string = "";
-    let customImage: React.ReactNode;
-    
-    if (props.image) {
-        customClass = "custom";
-        customImage = <span className="custom" style={{backgroundImage: `url('${props.image}')`}}></span>
-    }
+    const type: PageHeroTypes = props.type ? props.type : "full-image";
 
     return (
-        <div className={`page-hero ${props.type} ${customClass}`}>
-            {customImage}
-            <h1>{props.heading}</h1>
+        <div className={`page-hero ${type}`}>
+            <span className="image" style={{backgroundImage: `url('${props.image}')`}}></span>
+            <div className="title">
+                <span>{props.heading}</span>
+            </div>
         </div>
     );
 }

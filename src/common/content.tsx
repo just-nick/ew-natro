@@ -34,7 +34,8 @@ const TextTypeMapping: { [key: string]: string } = {
     'heading6': 'h6',
     'paragraph': 'p',
     'image': 'img',
-    'list-item': 'li'
+    'list-item': 'li',
+    'o-list-item': 'li'
 };
 
 export function writeText(content: TextContent[]): React.ReactNode {
@@ -56,7 +57,7 @@ export function writeText(content: TextContent[]): React.ReactNode {
 
             while (content[i] && content[i].type === 'image') {
                 const image = content[i] as any as ImageContent;
-                const style = {flexGrow: image.dimensions.width/image.dimensions.height};
+                const style = { flexGrow: image.dimensions.width / image.dimensions.height };
                 list.push(<span key={i} style={style}>
                     <img src={image.url} alt="" />
                 </span>);
@@ -67,7 +68,11 @@ export function writeText(content: TextContent[]): React.ReactNode {
             children.push(<div className={"image-block"} key={i}>{list}</div>);
         } else {
             const Tag = TextTypeMapping[item.type];
-            children.push(<Tag key={i}>{writeTextNode(item)}</Tag>);
+            if (Tag) {
+                children.push(<Tag key={i}>{writeTextNode(item)}</Tag>);
+            } else {
+                console.error('Unable to map tag type', item.type);
+            }
         }
     }
     return <>{children}</>
@@ -94,7 +99,7 @@ export function writeTextNode(item: TextContent) {
         }
 
         if (item.spans[item.spans.length - 1].end !== item.text.length) {
-            content.push(newLines(item.text.slice(item.spans[item.spans.length -1].end, item.text.length)));
+            content.push(newLines(item.text.slice(item.spans[item.spans.length - 1].end, item.text.length)));
         }
     } else {
         content.push(newLines(item.text));

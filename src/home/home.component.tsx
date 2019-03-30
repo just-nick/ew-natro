@@ -18,20 +18,28 @@ declare global {
 }
 
 function initPixlee() {
-    window.Pixlee.init({apiKey:'BPBl52vuWryouUxOgSuT'});
-    window.Pixlee.addSimpleWidget({widgetId:'16349'});
+    window.Pixlee.init({ apiKey: 'BPBl52vuWryouUxOgSuT' });
+    window.Pixlee.addSimpleWidget({ widgetId: '16349' });
     (document.querySelector('#pixlee_container iframe') as HTMLIFrameElement).scrolling = 'no';
 }
 
 class HomeComponentBase extends React.Component<DispatchProp & DataState, {}> {
-    public componentDidMount() {
-        setTimeout(() => {
+    private attempts = 0;
+    private trySetupWidget = () => {
+        if (document.getElementById('pixlee_container')) {
             if (window.Pixlee) {
                 initPixlee();
             } else {
                 window.PixleeAsyncInit = initPixlee;
             };
-        }, 1000);
+        } else if(this.attempts < 20) {
+            setTimeout(this.trySetupWidget, 1000);
+            this.attempts++;
+        }
+    }
+
+    public componentDidMount() {
+        setTimeout(this.trySetupWidget, 1000);
     }
 
     public render() {
@@ -46,7 +54,7 @@ class HomeComponentBase extends React.Component<DispatchProp & DataState, {}> {
                             {this.props.services.map((service, i) => (
                                 <li key={i}>
                                     <Link to={`/services#${service.id}`}>
-                                        <span className="image" style={{backgroundImage: service.image ? `url('${service.image.url}')` : ''}} />
+                                        <span className="image" style={{ backgroundImage: service.image ? `url('${service.image.url}')` : '' }} />
                                         <h3>{service.title}</h3>
                                     </Link>
                                 </li>

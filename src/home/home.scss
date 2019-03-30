@@ -163,3 +163,11 @@
         padding: 1rem .5rem;
     }
 }
+
+#pixlee_container {
+    iframe {
+        height: 230px !important;
+        overflow-x: hidden !important;
+        overflow-y: hidden !important;
+    }
+}

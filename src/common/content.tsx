@@ -109,9 +109,15 @@ export function writeTextNode(item: TextContent) {
 }
 
 function newLines(fullString: string) {
-    return fullString.split('\n').map((s, i) => (
-        <React.Fragment key={i}>{s}<br /></React.Fragment>
-    ));
+    let first = true;
+    return fullString.split('\n').map((s, i) => {
+        if (first) {
+            first = false;
+            return <React.Fragment key={i}>{s}</React.Fragment>
+        } else {
+            return <React.Fragment key={i}>{s}<br /></React.Fragment>
+        }
+    });
 }
 
 export interface ImageContent {

@@ -51,7 +51,9 @@ class HomeComponentBase extends React.Component<DispatchProp & DataState, {}> {
                     <section id="home-services" className='services container'>
                         <h2>How can Emma help you?</h2>
                         <ul>
-                            {this.props.services.map((service, i) => (
+                            {this.props.services
+                                .sort((a, b) => a.order && b.order ? a.order - b.order : 0)
+                                .map((service, i) => (
                                 <li key={i}>
                                     <Link to={`/services#${service.id}`}>
                                         <span className="image" style={{ backgroundImage: service.image ? `url('${service.image.url}')` : '' }} />

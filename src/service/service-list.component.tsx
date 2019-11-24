@@ -44,7 +44,9 @@ class Component extends React.Component<DataState & DispatchProp & RouteProps, {
 
                     <PageHeroComponent heading={props.serviceLanding.title[0].text} image={props.serviceLanding.header_image.url} />
 
-                    {props.services.map((service, i) => {
+                    {props.services
+                        .sort((a, b) => a.order && b.order ? a.order - b.order : 0)
+                        .map((service, i) => {
                         return (
                             <div className="block-item" key={i} id={service.id}>
                                 <div className="feature">

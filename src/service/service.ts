@@ -2,7 +2,8 @@ import { TextContent, ImageContent } from './../common/content';
 import { PrismicData } from "../common/content";
 
 export interface Service extends PrismicData {
-    title: string,
+    title: string;
+    order: number;
     description: TextContent[];
     image: ImageContent;
 }
